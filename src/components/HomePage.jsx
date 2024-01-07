@@ -211,7 +211,7 @@ function HomePage() {
               />
             </svg>
             <div>Football</div>
-            <button>{language === "english" ? "Check out" : "Vérifier"}</button>
+            <button><Link to="/football" className="link">Check out</Link></button>
           </div>
           <div className="sport">
             <svg
@@ -246,7 +246,7 @@ function HomePage() {
               />
             </svg>
             <div>Basketball</div>
-            <button>{language === "english" ? "Check out" : "Vérifier"}</button>
+            <button><Link to="/basketball" className="link">Check out</Link></button>
           </div>
           <div className="sport">
             <svg
@@ -262,7 +262,7 @@ function HomePage() {
               />
             </svg>
             <div>Volleyball</div>
-            <button>{language === "english" ? "Check out" : "Vérifier"}</button>
+            <button><Link to="/volleyball" className="link">Check out</Link></button>
           </div>
           <div className="sport">
             <svg
@@ -284,7 +284,7 @@ function HomePage() {
               />
             </svg>
             <div>Tennis</div>
-            <button>{language === "english" ? "Check out" : "Vérifier"}</button>
+            <button><Link to="/tennis" className="link">Check out</Link></button>
           </div>
         </div>
         <div className="home-events">
@@ -304,7 +304,7 @@ function HomePage() {
               : "A Champions arena, nous organisons toujours des événements, tels que des matchs importants de football, de basket-ball, de volley-ball et de tennis, nous diffusons des matchs sur des écrans géants et bien d'autres choses encore."}
           </div>
           <button>
-          {language === "english" ? "See events" : "Les voir"} <span> &#8594;</span>
+          <Link to="/events" className="link">See events</Link><span> &#8594;</span>
           </button>
         </div>
         <div className="videos-container">
