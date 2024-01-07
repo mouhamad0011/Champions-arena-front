@@ -1,0 +1,171 @@
+.basketball-page-hero {
+    background-image: url("../images/basket.jpg");
+    background-color: lightgray;
+    background-position:  0px -388.003px;
+    background-size: 100% 163.823%;
+    background-repeat: no-repeat;
+    height: 880px;
+  }
+  .b-cut2 {
+    width: 880px;
+    height: 206px;
+    background-color:#FFCE00;
+    position: absolute;
+    top: 118%;
+    right: 0;
+    z-index: 1;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: black;
+  }
+  
+  .stadiums {
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    background-color: #333;
+  }
+  .b-footer {
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)),
+      url("../images/basketfooter.jpg");
+    height: 325px;
+    width: 100%;
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+
+  @media screen and (min-width: 819px) and (max-width: 835px) {
+    .b-cut2 {
+      width: 580px;
+      height: 150px;
+      background-color:#FFCE00;
+      position: absolute;
+      top: 76.8%;
+      right: 0;
+      z-index: 1;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      color: black;
+    }
+    
+    .stadiums {
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 100px;
+      background-color: #333;
+    }
+    .b-footer {
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)),
+        url("../images/basketfooter.jpg");
+      height: 325px;
+      width: 100%;
+      background-position: 50% 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+    }
+  }
+  @media screen and (min-width: 767px) and (max-width: 799px) {
+    .b-cut2 {
+      width: 480px;
+      height: 150px;
+      background-color:#FFCE00;
+      position: absolute;
+      top: 92%;
+      right: 0%;
+      z-index: 1;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      color: black;
+      
+    }
+    
+    .stadiums {
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 100px;
+      background-color: #333;
+    }
+    .b-footer {
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)),
+        url("../images/basketfooter.jpg");
+      height: 325px;
+      width: 100%;
+      background-position: 50% 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+    }
+  }
+  @media screen and (min-width: 799px) and (max-width: 805px) {
+    .b-cut2 {
+      width: 480px;
+      height: 150px;
+      background-color:#FFCE00;
+      position: absolute;
+      top: 74.5%;
+      right: 0%;
+      z-index: 1;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      color: black;
+      
+    }
+    
+    .stadiums {
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 100px;
+      background-color: #333;
+    }
+    .b-footer {
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)),
+        url("../images/basketfooter.jpg");
+      height: 325px;
+      width: 100%;
+      background-position: 50% 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+    }
+  }
+  @media screen and (max-width: 576px){
+    .b-cut2 {
+      display: none;
+    }
+    .b-footer {
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)),
+        url("../images/basketfooter.jpg");
+      height: 220px;
+      width: 100%;
+      background-position: 50% 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+    }
+    .stadiums{
+      height: 600px;
+    }
+  }

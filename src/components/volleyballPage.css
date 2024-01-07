@@ -1,0 +1,150 @@
+.volleyball-page-hero {
+  background-image: url("../images/volleyhero.jpg");
+  background-color: lightgray;
+  background-position: 0px -735.134px;
+  background-size: 100% 230.334%;
+  background-repeat: no-repeat;
+  height: 880px;
+}
+.v-cut2 {
+  width: 880px;
+  height: 206px;
+  background-color: #d21034;
+  position: absolute;
+  top: 118%;
+  right: 0;
+  z-index: 1;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: white;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.stadiums {
+  height: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+  background-color: #333;
+}
+.v-cut1 {
+  z-index: 3;
+  position: absolute;
+  top: 122%;
+  left: 23%;
+  color: black;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.v-footer {
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)),
+      url("../images/volleyfooter.jpg");
+    height: 325px;
+    width: 100%;
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+
+  @media screen and (min-width: 819px) and (max-width: 835px) {
+    .v-cut2 {
+      width: 580px;
+      height: 150px;
+      background-color: #d21034;
+      position: absolute;
+      top: 76.8%;
+      right: 0;
+      z-index: 1;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      color: white;
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    .v-cut1 {
+      z-index: 3;
+      position: absolute;
+      top: 79%;
+      left: 12%;
+      color: black;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+  }
+  @media screen and (min-width: 767px) and (max-width: 799px) {
+    .v-cut2 {
+      width: 480px;
+      height: 150px;
+      background-color: #d21034;
+      position: absolute;
+      top: 92%;
+      right: 0;
+      z-index: 1;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      color: white;
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    .v-cut1 {
+      z-index: 3;
+      position: absolute;
+      top: 95%;
+      left: 12%;
+      color: black;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+  }
+  @media screen and (min-width: 799px) and (max-width: 805px) {
+    .v-cut2 {
+      width: 480px;
+      height: 150px;
+      background-color: #d21034;
+      position: absolute;
+      top: 74.5%;
+      right: 0;
+      z-index: 1;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      color: white;
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    .v-cut1 {
+      z-index: 3;
+      position: absolute;
+      top: 77%;
+      left: 12%;
+      color: black;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+  }
+  @media screen and (max-width: 576px){
+    .v-cut2 {
+      display: none;
+    }
+    .v-cut1 {
+      display: none;
+    }
+    .stadiums{
+      height: 600px;
+    }
+  }

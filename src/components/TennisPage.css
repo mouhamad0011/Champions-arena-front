@@ -1,0 +1,162 @@
+.tennis-page-hero {
+    background-image: url("../images/tennishero.jpg");
+    background-color: lightgray;
+    background-position: 0px -53.277px;
+    background-size: 100% 122.867%;
+    background-repeat: no-repeat;
+    height: 880px;
+  }
+  .t-cut2 {
+    width: 880px;
+    height: 206px;
+    background-color:#006A4A;;
+    position: absolute;
+    top: 118%;
+    right: 0;
+    z-index: 1;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: white;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  
+  .stadiums {
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    background-color: #333;
+  }
+  .t-cut1 {
+    z-index: 3;
+    position: absolute;
+    top: 122%;
+    left: 23%;
+    color: black;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .v-footer {
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)),
+        url("../images/tennisfooter.jpg");
+      height: 325px;
+      width: 100%;
+      background-position: -2.171px -1003.073px ;
+      background-repeat: no-repeat;
+      background-size:100% 590.359%  ;
+      position: relative;
+    }
+
+  
+    @media screen and (min-width: 819px) and (max-width: 835px) {
+      .t-cut2 {
+        width: 580px;
+        height: 150px;
+        background-color:#006A4A;;
+        position: absolute;
+        top: 76.8%;
+        right: 0;
+        z-index: 1;
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        color: white;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      }
+      .t-cut1 {
+        z-index: 3;
+        position: absolute;
+        top: 79%;
+        left: 12%;
+        color: black;
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+    }
+    @media screen and (min-width: 767px) and (max-width: 799px) {
+      .t-cut2 {
+        width: 480px;
+        height: 150px;
+        background-color:#006A4A;;
+        position: absolute;
+        top: 92%;
+        right: 0;
+        z-index: 1;
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        color: white;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      }
+      .t-cut1 {
+        z-index: 3;
+        position: absolute;
+        top: 95%;
+        left: 12%;
+        color: black;
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+    }
+    @media screen and (min-width: 799px) and (max-width: 805px) {
+      .t-cut2 {
+        width: 480px;
+        height: 150px;
+        background-color:#006A4A;;
+        position: absolute;
+        top: 74.5%;
+        right: 0;
+        z-index: 1;
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        color: white;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      }
+      .t-cut1 {
+        z-index: 3;
+        position: absolute;
+        top: 77%;
+        left: 12%;
+        color: black;
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+      
+    }
+    @media screen and (max-width: 576px){
+      .t-cut2 {
+        display: none;
+      }
+      .t-cut1 {
+       display: none;
+      }
+      .v-footer {
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)),
+          url("../images/tennisfooter.jpg");
+        height: 200px;
+        width: 100%;
+        background-position: -2.171px -1003.073px ;
+        background-repeat: no-repeat;
+        background-size:100% 590.359%  ;
+        position: relative;
+      }
+      .stadiums{
+        height: 600px;
+      }
+    }

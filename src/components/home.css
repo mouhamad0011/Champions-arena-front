@@ -1,0 +1,919 @@
+.body {
+  background: linear-gradient(180deg, #333 0%, rgba(51, 51, 51, 0.72) 100%);
+  width: 100%;
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+body{
+  overflow-x:hidden;
+}
+.phone-header{
+  display: none;
+}
+.link{
+  text-decoration: none;
+  color: #fff;
+}
+.header {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 80px;
+  justify-content: center;
+}
+.reg-lan {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  align-items: center;
+}
+.menu {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+.menu li {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  list-style-type: none;
+}
+.menu li:hover {
+  color: #d21034;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.logo {
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
+}
+.logo:hover {
+  cursor: pointer;
+  scale: 1.05;
+}
+.title {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.language {
+  width: 32.931px;
+  height: 33px;
+  flex-shrink: 0;
+}
+.reg-button .link{
+  text-decoration: none;
+  color: #fff;
+}
+.reg-button {
+  width: fit-content;
+  padding: 10px;
+  height: 55px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: #d21034;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: #fff;
+  border: none;
+}
+.reg-button:hover {
+  font-weight: 200;
+  background: transparent;
+  cursor: pointer;
+  color: #fff;
+  border: 1px solid #d21034;
+  scale: 1.05;
+}
+.sports .link{
+  text-decoration: none;
+  color: #fff;
+}
+.sports {
+  position: absolute;
+  left: 37.2%;
+  top: 9%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #333;
+  z-index: 1;
+}
+.sports div:hover {
+  scale: 1.15;
+  cursor: pointer;
+}
+.language:hover {
+  cursor: pointer;
+}
+.languages div:hover {
+  scale: 1.15;
+  cursor: pointer;
+}
+.languages {
+  position: absolute;
+  right: 3%;
+  top: 9%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #333;
+  z-index: 1;
+}
+
+.home-page-hero {
+  background-image: url("../images/homePage-hero.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 800px;
+  position: relative;
+}
+.see-more {
+  background: rgba(51, 51, 51, 0.9);
+  height: 180px;
+  width: 28%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px;
+  position: absolute;
+  top: 75%;
+  left: 22.1%;
+}
+.welcome {
+  color: #fff;
+  font-family: Poppins;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: normal;
+}
+.welcome-detail {
+  color: #fff;
+  font-family: Poppins;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: normal;
+}
+.welcome-button {
+  border-radius: 5px;
+  background: #d21034;
+  width:fit-content;
+  height: 58px;
+  flex-shrink: 0;
+  color: #fff;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: normal;
+  border: none;
+  padding: 10px;
+}
+.welcome-button:hover {
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid #d21034;
+  scale: 1.02;
+}
+
+.sports-icons {
+  background: linear-gradient(180deg, #333 0%, rgba(51, 51, 51, 0.11) 100%);
+  width: 100%;
+  height: 500px;
+  display: flex;
+  flex-direction: row;
+  gap: 150px;
+  justify-content: center;
+  align-items: center;
+}
+.sport {
+  display: flex;
+  flex-direction: column;
+  gap: 75px;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.sport div {
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.sport button {
+  color: #fff;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  border-radius: 5px;
+  background: #d21034;
+  height: 50px;
+  border: none;
+  width: fit-content;
+  padding: 10px;
+}
+
+.sport button:hover {
+  background-color: transparent;
+  border: 2px solid #d21034;
+  cursor: pointer;
+  scale: 1.05;
+}
+
+.home-events {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../images/sporting-events.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 550px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+  justify-content: center;
+}
+.home-events-div1 {
+  color: #fff;
+  text-shadow: 0px 4px 4px rgba(255, 255, 255, 0);
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  width: 900px;
+}
+.home-events-div2 {
+  color: #fff;
+  text-shadow: 0px 4px 4px rgba(255, 255, 255, 0);
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  width: 800px;
+}
+.join {
+  color: #fff;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+}
+.home-events button {
+  color: #fff;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border-radius: 5px;
+  background: #d21034;
+  height: 50px;
+  border: none;
+  width: fit-content;
+  padding: 10px;
+}
+.home-events button:hover {
+  background-color: transparent;
+  border: 2px solid #d21034;
+  cursor: pointer;
+  scale: 1.05;
+}
+
+.videos-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+  width: 100%;
+  height: 637px;
+  background: radial-gradient(
+    101.95% 49.29% at 50.03% 54.4%,
+    #fff 0%,
+    #333 100%
+  );
+}
+.videos {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.videos-text {
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.ftb-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("../images/messi.jpg");
+  height: 350px;
+  width: 450px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.basket-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("../images/lebron.jpg");
+  height: 350px;
+  width: 450px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tennis-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("../images/nadal.jpg");
+  height: 350px;
+  width: 450px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+video {
+  width: 450px;
+  height: 350px;
+}
+.videos svg:hover{
+  cursor: pointer;
+  scale: 1.05; 
+}
+.footer {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("../images/footer.jpg");
+  height: 325px;
+  width: 100%;
+  background-position: 50% 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.footer-div {
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.6);
+  width: 800px;
+  height: 218px;
+  position: absolute;
+  bottom: 0;
+  left: 23%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+.footer-div1 {
+  display: flex;
+  flex-direction: row;
+  gap: 200px;
+}
+.footer-logo-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+.footer-logo-title div {
+  color: #fcfcfc;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.footer-social-media {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+.footer-social-media img {
+  width: 50px;
+  height: 50px;
+}
+
+.footer-div2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 100px;
+}
+
+.menu2 {
+  display: flex;
+  flex-direction: row;
+
+  gap: 15px;
+}
+.menu2 li {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  list-style-type: none;
+}
+.menu2 li:hover {
+  color: #d21034;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 576px) and (max-width: 835px) {
+  .header {
+    gap: 25px;
+  }
+  .reg-lan {
+    gap: 15px;
+  }
+  .menu {
+    gap: 8px;
+  }
+  .menu li {
+    font-size: 18px;
+    font-weight: 200;
+  }
+  .logo {
+    width: 50px;
+    height: 50px;
+  }
+  .title {
+    font-size: 18px;
+    font-weight: 200;
+    width: 80px;
+  }
+
+  .reg-button {
+    height: 45px;
+    font-size: 18px;
+    font-weight: 200;
+  }
+  .sports {
+    position: absolute;
+    left: 29%;
+    top: 7%;
+  }
+  .languages {
+    position: absolute;
+    right: 1%;
+    top: 6%;
+  }
+  .home-page-hero {
+    height: 650px;
+  }
+  .see-more {
+    height: 230px;
+    width: 43%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+    position: absolute;
+    top: 64%;
+    left: 22.1%;
+  }
+  .welcome {
+    font-size: 29px;
+  }
+  .welcome-detail {
+    font-size: 23px;
+  }
+  .welcome-button {
+    height: 50px;
+    font-size: 20px;
+  }
+  .sports-icons {
+    height: 500px;
+    gap: 70px;
+  }
+  .sport {
+    gap: 75px;
+  }
+  .sport div {
+    font-size: 30px;
+  }
+  .sport button {
+    font-size: 20px;
+  }
+  .home-events {
+    height: 500px;
+  }
+  .home-events-div1 {
+    font-size: 30px;
+    width: 750px;
+  }
+  .home-events-div2 {
+    font-size: 30px;
+    width: 650px;
+  }
+  .join {
+    font-size: 40px;
+  }
+  .videos-container {
+    gap: 50px;
+    height: 1300px;
+  }
+  .videos {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .videos-text {
+    font-size: 45px;
+  }
+
+  .footer {
+    height: 215px;
+  }
+  .footer-div {
+    width: 600px;
+    height: 158px;
+    left: 14%;
+    gap: 30px;
+  }
+  .footer-div1 {
+    gap: 80px;
+  }
+  .footer-logo-title div {
+    font-size: 24px;
+  }
+  .footer-social-media {
+    gap: 10px;
+  }
+  .footer-social-media img {
+    width: 40px;
+    height: 40px;
+  }
+  .footer-div2 {
+    gap: 50px;
+  }
+  .menu2 {
+    gap: 10px;
+  }
+  .menu2 li {
+    font-size: 18px;
+  }
+}
+
+
+@media screen and (max-width: 576px){
+  .header {
+    display: none;
+  }
+  .phone-header {
+    display: block;
+  }
+  .trigger {
+    border: 2px solid #fff;
+    border-radius: 10px;
+}
+
+.bars {
+  width: 40px;
+  cursor: pointer;
+}
+.bars .line {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 4;
+  stroke-linecap: square;
+  transition: stroke-dasharray 400ms,  stroke-dashoffset 400ms;
+}
+.bars .line.top {
+  stroke-dasharray: 40 172;
+}
+.bars .line.middle {
+  stroke-dasharray: 40 111;
+}
+.bars .line.bottom {
+  stroke-dasharray: 40 172;
+}
+.bars.active .top {
+  stroke-dashoffset: -132px;
+}
+.bars.active .middle {
+  stroke-dashoffset: -71px;
+}
+.bars.active .bottom {
+  stroke-dashoffset: -132px;
+}
+  .phone-header {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 11px;
+    justify-content: center;
+  }
+  .phone-reg-lan {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+  }
+  .phone-menu {
+    width: 80px; 
+    height: fit-content;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: 11%;
+    right: 0%;
+    background-color: #333;
+    border-bottom-left-radius: 10px;
+    padding: 10px;
+  }
+  .phone-menu li {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    list-style-type: none;
+  }
+  .phone-menu li:hover {
+    color: #d21034;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .phone-logo {
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+  }
+  .phone-logo:hover {
+    cursor: pointer;
+    scale: 1.05;
+  }
+  .phone-title {
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 110px;
+  }
+  .phone-language {
+    width: 32.931px;
+    height: 33px;
+    flex-shrink: 0;
+  }
+  .phone-reg-button {
+    width: fit-content;
+    padding: 5px;
+    height: 45px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: #d21034;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #fff;
+    border: none;
+  }
+  .phone-reg-button:hover {
+    font-weight: 200;
+    background: transparent;
+    cursor: pointer;
+    color: #fff;
+    border: 1px solid #d21034;
+    scale: 1.05;
+  }
+  .phone-sports {
+    position: absolute;
+    left: 49%;
+    top: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #333;
+    z-index: 1;
+  }
+  .phone-sports div:hover {
+    scale: 1.15;
+    cursor: pointer;
+  }
+  .phone-language:hover {
+    cursor: pointer;
+  }
+  .phone-languages div:hover {
+    scale: 1.15;
+    cursor: pointer;
+  }
+  .phone-languages {
+    position: absolute;
+    right: 14%;
+    top: 11%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #333;
+    z-index: 1;
+  }
+
+
+
+
+  .home-page-hero {
+    height: 450px;
+  }
+  .see-more {
+    height: 170px;
+    width: 65%;
+    gap: 10px;
+    top: 60%;
+    left: 16%;
+  }
+  .welcome {
+    font-size: 20px;
+  }
+  .welcome-detail {
+    font-size: 18px;
+  }
+  .welcome-button {
+    width:fit-content;
+    padding: 5px;
+    height: 40px;
+    font-size: 15px;
+  }
+  .sports-icons {
+    height: 650px;
+    flex-wrap: wrap;
+    gap:20px;
+  }
+  .sport {
+    flex: 30%;
+    gap: 50px;
+  }
+  .sport svg{
+    width: 60px;
+    height: 60px;
+  }
+  .sport div {
+    font-size: 20px;
+  }
+  .sport button {
+    font-size: 18px;
+  }
+  .home-events {
+    height: 450px;
+    gap: 30px;
+  }
+  .home-events-div1 {
+    font-size: 20px;
+    width: 240px;
+  }
+  .home-events-div2 {
+    font-size: 20px;
+    width: 230px;
+  }
+  .join {
+    font-size: 27px;
+  }
+  .home-events button {
+    font-size: 20px;
+    height: 40px;
+    width: fit-content;
+    padding: 5px;
+  }
+  .videos-container {
+    gap: 50px;
+    height: 1000px;
+  }
+  .videos {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .videos-text {
+    font-size: 35px;
+  }
+  .ftb-image {
+    height: 250px;
+    width: 320px;
+  }
+  .basket-image {
+    height: 250px;
+    width: 320px;
+  }
+  .tennis-image {
+    height: 250px;
+    width: 320px;
+  }
+  video {
+    width: 320px;
+    height: 250px;
+  }
+  .footer {
+    height: 210px;
+    width: 100%;
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+  .footer-div {
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    bottom: 0;
+    left: 0; 
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+    justify-content: normal;
+    gap: 10px;
+  }
+  .footer-div1 {
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .footer-logo-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+  }
+  .footer-logo-title div {
+    color: #fcfcfc;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .footer-social-media {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+  }
+  .footer-social-media img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .footer-div2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .menu2 {
+    display: none;
+  }
+  .menu2 li {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    list-style-type: none;
+  }
+  
+}

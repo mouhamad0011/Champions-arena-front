@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Login from "./components/Login"
+import HomePage from "./components/HomePage";
+import FootballPage from "./components/FootballPage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import BasketballPage from "./components/basketballPage";
+import VolleyballPage from "./components/VolleyballPage";
+import TennisPage from "./components/TennisPage";
+import Events from "./components/Events";
+import ContactPage from "./components/Contact";
+import Cafeteria from "./components/Cafeteria";
+import Store from "./components/Store";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage/>} />
+        <Route path="/connect" element={<Login/>} />
+        <Route path="/football" element={<FootballPage/>} />
+        <Route path="/basketball" element={<BasketballPage/>} />
+        <Route path="/volleyball" element={<VolleyballPage/>} />
+        <Route path="/tennis" element={<TennisPage/>} />
+        <Route path="/events" element={<Events/>} />
+        <Route path="/contact" element={<ContactPage/>} />
+        <Route path="/cafeteria" element={<Cafeteria/>} />
+        <Route path="/store" element={<Store/>} />
+     </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -1,0 +1,744 @@
+.football-page-hero {
+  background-image: url("../images/footballl3.jpg");
+  background-color: lightgray;
+  background-position: 0px -50.54px;
+  background-size: 100% 163.823%;
+  background-repeat: no-repeat;
+  height: 880px;
+}
+
+.svg1 {
+  position: absolute;
+  top: 120%;
+  z-index: 2;
+}
+.cut1 {
+  z-index: 3;
+  position: absolute;
+  top: 122%;
+  left: 23%;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.cut1-2 {
+  position: absolute;
+  top: 150%;
+  left: 37%;
+}
+.cut2 {
+  width: 880px;
+  height: 206px;
+  background: #d21034;
+  position: absolute;
+  top: 118%;
+  right: 0;
+  z-index: 1;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.cut2-1 {
+  z-index: 4;
+  position: absolute;
+  top: 15%;
+  left: 23%;
+}
+.cut2-2 {
+  z-index: 4;
+  position: absolute;
+  top: 55%;
+  left: 18%;
+}
+.f-stadiums {
+  height: 1550px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+  background-color: #333;
+}
+.stadiums-title {
+  margin-top: 120px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.stadiums-terrain {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: 150px;
+  row-gap: 100px;
+}
+.stadiums-terrain-single {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.stadiums-terrain-single img {
+  width: 500px;
+  height: 400px;
+}
+.stadiums-terrain-single div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dimensions {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.booking-container {
+  background: radial-gradient(
+    100.49% 54.62% at 61.1% 46.52%,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(51, 51, 51, 0) 91.67%
+  );
+  width: 100%;
+  height: 1000px;
+}
+.booking-container img {
+  width: 500px;
+  height: 800px;
+  position: absolute;
+  right: 0%;
+  margin-top: 100px;
+}
+.booking {
+  position: absolute;
+  margin-top: 100px;
+  left: 15%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.booking-schedule {
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.dropdown .button {
+  width: 250px;
+  height: 65px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: #d21034;
+  color: #fff;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border: none;
+}
+.dropdown {
+  display: flex;
+  flex-direction: column;
+}
+.dropdown-list {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  width: 150px;
+  margin-left: 35px;
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  gap: 15px;
+  background-color: black;
+  padding: 15px;
+  border-radius: 10px;
+  position: absolute;
+}
+.dropdown-list div:hover {
+  cursor: pointer;
+  scale: 1.05;
+  color: #d21034;
+}
+.calendar-days {
+  display: flex;
+  flex-direction: row;
+  gap: 60px;
+}
+.calendar-days-day {
+  width: 60px;
+  height: 60px;
+  background: white;
+  color: black;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.booking-expamles {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+.booking-expamle {
+  width: 530px;
+  height: 80px;
+  background-color: #fff;
+  color: black;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  align-items: center;
+  padding-left: 10px;
+}
+.booking-last {
+  display: flex;
+  flex-direction: row;
+  gap: 93px;
+  align-items: center;
+}
+.booking-last div {
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  width: 250px;
+}
+.booking-last button {
+  width: 200px;
+  height: 50px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: #d21034;
+  color: #fff;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  border: none;
+}
+.booking-last button:hover {
+  background-color: transparent;
+  border: 1px solid #d21034;
+  cursor: pointer;
+}
+.calendar-days-day:hover {
+  background-color: #d21034;
+  color: #fff;
+  cursor: pointer;
+}
+
+
+
+
+@media screen and (min-width: 819px) and (max-width: 835px) {
+  .svg1 {
+    position: absolute;
+    top: 75%;
+    z-index: 2;
+    width: 600px;
+    left: -15%;
+  }
+  .cut1 {
+    z-index: 3;
+    position: absolute;
+    top: 79%;
+    left: 10%;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .cut1-2 {
+    position: absolute;
+    top: 150%;
+    left: 37%;
+  }
+  .cut2 {
+    width: 550px;
+    height: 160px;
+    background: #d21034;
+    position: absolute;
+    top: 76.5%;
+    right: 0;
+    z-index: 1;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .cut2-1 {
+    z-index: 4;
+    position: absolute;
+    top: 17%;
+    left: 41%;
+  }
+  .cut2-2 {
+    z-index: 4;
+    position: absolute;
+    top: 62%;
+    left: 33%;
+  }
+  .f-stadiums {
+    height: 2600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    background-color: #333;
+  }
+  .stadiums-title {
+    margin-top: 50px;
+  }
+  .booking-container {
+    background: radial-gradient(
+      100.49% 54.62% at 61.1% 46.52%,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(51, 51, 51, 0) 91.67%
+    );
+    width: 100%;
+    height: 900px;
+    display: flex;
+   justify-content: center;
+  }
+  .booking-container img {
+    display: none;
+  }
+  .booking {
+    position: relative;
+    margin-top: 100px;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    gap: 50px;
+  }
+
+}
+
+
+@media screen and (min-width: 767px) and (max-width: 799px) {
+  .svg1 {
+    position: absolute;
+    top: 90%;
+    z-index: 2;
+    width: 600px;
+    left: -15%;
+  }
+  .cut1 {
+    z-index: 3;
+    position: absolute;
+    top: 95%;
+    left: 12%;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .cut1-2 {
+    position: absolute;
+    top: 150%;
+    left: 37%;
+  }
+  .cut2 {
+    width: 480px;
+    height: 160px;
+    background: #d21034;
+    position: absolute;
+    top: 91.3%;
+    right: 0;
+    z-index: 1;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .cut2-1 {
+    z-index: 4;
+    position: absolute;
+    top: 22%;
+    left: 40%;
+  }
+  .cut2-2 {
+    z-index: 4;
+    position: absolute;
+    top: 65%;
+    left: 32%;
+  }
+  .f-stadiums {
+    height: 2600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    background-color: #333;
+  }
+  .stadiums-title {
+    margin-top: 50px;
+  }
+  .booking-container {
+    background: radial-gradient(
+      100.49% 54.62% at 61.1% 46.52%,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(51, 51, 51, 0) 91.67%
+    );
+    width: 100%;
+    height: 900px;
+    display: flex;
+   justify-content: center;
+  }
+  .booking-container img {
+    display: none;
+  }
+  .booking {
+    position: relative;
+    margin-top: 100px;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    gap: 50px;
+  }
+}
+
+@media screen and (min-width: 799px) and (max-width: 805px) {
+  .svg1 {
+    position: absolute;
+    top: 73%;
+    z-index: 2;
+    width: 600px;
+    left: -15%;
+  }
+  .cut1 {
+    z-index: 3;
+    position: absolute;
+    top: 77%;
+    left: 12%;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .cut1-2 {
+    position: absolute;
+    top: 150%;
+    left: 37%;
+  }
+  .cut2 {
+    width: 480px;
+    height: 160px;
+    background: #d21034;
+    position: absolute;
+    top: 74.1%;
+    right: 0;
+    z-index: 1;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .cut2-1 {
+    z-index: 4;
+    position: absolute;
+    top: 22%;
+    left: 35%;
+  }
+  .cut2-2 {
+    z-index: 4;
+    position: absolute;
+    top: 65.8%;
+    left: 28%;
+  }
+  .f-stadiums {
+    height: 2650px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    background-color: #333;
+  }
+  .stadiums-title {
+    margin-top: 100px;
+  }
+  .booking-container {
+    background: radial-gradient(
+      100.49% 54.62% at 61.1% 46.52%,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(51, 51, 51, 0) 91.67%
+    );
+    width: 100%;
+    height: 900px;
+    display: flex;
+   justify-content: center;
+  }
+  .booking-container img {
+    display: none;
+  }
+  .booking {
+    position: relative;
+    margin-top: 100px;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    gap: 50px;
+  }
+}
+
+@media screen and (max-width: 576px){
+  .football-page-hero {
+    background-image: url("../images/footballl3.jpg");
+    background-color: lightgray;
+    background-position: 0px -50.54px;
+    background-size: 100% 163.823%;
+    background-repeat: no-repeat;
+    height: 780px;
+  }
+  
+  .svg1 {
+   display: none;
+  }
+  .cut1 {
+   display: none;
+  }
+  .cut1-2 {
+   display: none;
+  }
+  .cut2 {
+    display: none;
+  }
+  .cut2-1 {
+    display: none;
+  }
+  .cut2-2 {
+    display: none;
+  }
+  .f-stadiums {
+    height: 1800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    background-color: #333;
+  }
+  .stadiums-title {
+    margin-top: 30px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .stadiums-terrain {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    column-gap: 150px;
+    row-gap: 70px;
+  }
+  .stadiums-terrain-single {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .stadiums-terrain-single img {
+    width: 300px;
+    height: 250px;
+  }
+  .stadiums-terrain-single div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .dimensions {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .booking-container {
+    background: radial-gradient(
+      100.49% 54.62% at 61.1% 46.52%,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(51, 51, 51, 0) 91.67%
+    );
+    width: 100%;
+    height: 850px;
+  }
+  .booking-container img {
+   display: none;
+  }
+  .booking {
+    position: relative;
+    margin-top: 100px;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+  }
+  .booking-schedule {
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  .dropdown .button {
+    width: 220px;
+    height: 65px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: #d21034;
+    color: #fff;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border: none;
+  }
+  .dropdown {
+    display: flex;
+    flex-direction: column;
+  }
+  .dropdown-list {
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 150px;
+    margin-left: 27px;
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    gap: 15px;
+    background-color: black;
+    padding: 15px;
+    border-radius: 10px;
+    position: absolute;
+  }
+  .dropdown-list div:hover {
+    cursor: pointer;
+    scale: 1.05;
+    color: #d21034;
+  }
+  .calendar-days {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+  }
+  .calendar-days-day {
+    width: 40px;
+    height: 40px;
+    background: white;
+    color: black;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .booking-expamles {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .booking-expamle {
+    width: 315px;
+    height: 80px;
+    background-color: #fff;
+    color: black;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    padding-left: 10px;
+  }
+  .booking-last {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+  }
+  .booking-last div {
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 250px;
+  }
+  .booking-last button {
+    width: fit-content;
+    padding: 10px;
+    height: 50px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: #d21034;
+    color: #fff;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border: none;
+  }
+  .booking-last button:hover {
+    background-color: transparent;
+    border: 1px solid #d21034;
+    cursor: pointer;
+  }
+  .calendar-days-day:hover {
+    background-color: #d21034;
+    color: #fff;
+    cursor: pointer;
+  }
+}
