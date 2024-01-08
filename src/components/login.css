@@ -10,6 +10,19 @@
   position: fixed;
   color: white;
 }
+.login-body .go-back{
+  width: 65px;
+  height: 40px;
+  position:absolute;
+  top: 0;
+  left: 0;
+  background-color: #D21034;
+  padding: 10px;
+}
+.login-body .go-back:hover{
+  cursor: pointer;
+  background-color:#970d26;
+}
 .login-form {
   position: absolute;
   top: 5%;
@@ -233,6 +246,19 @@
 
 
 @media screen and (max-width: 576px){
+  .login-body .go-back{
+    width: 45px;
+    height: 30px;
+    position:absolute;
+    top: 0;
+    left: 0;
+    background-color: #D21034;
+    padding: 10px;
+  }
+  .login-body .go-back .go-back-svg{
+    width: 35px;
+    height: 30px;
+  }
   .login-form {
     position: absolute;
     top: 10%;
