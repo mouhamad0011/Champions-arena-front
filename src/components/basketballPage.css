@@ -1,8 +1,8 @@
 .basketball-page-hero {
-    background-image: url("../images/basket.jpg");
+    background-image: url("../images/newbaskethero.jpg");
     background-color: lightgray;
-    background-position:  0px -388.003px;
-    background-size: 100% 163.823%;
+    background-position:  center;
+    background-size: cover;
     background-repeat: no-repeat;
     height: 880px;
   }

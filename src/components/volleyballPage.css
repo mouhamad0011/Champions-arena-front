@@ -1,11 +1,12 @@
 .volleyball-page-hero {
-  background-image: url("../images/volleyhero.jpg");
+  background-image: url("../images/volleynew.jpg");
   background-color: lightgray;
-  background-position: 0px -735.134px;
-  background-size: 100% 230.334%;
+  background-position: 0px -80.5px;
+  background-size: 100% 109.215%;
   background-repeat: no-repeat;
   height: 880px;
 }
+
 .v-cut2 {
   width: 880px;
   height: 206px;

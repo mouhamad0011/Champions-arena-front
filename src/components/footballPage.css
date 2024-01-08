@@ -1,8 +1,8 @@
 .football-page-hero {
-  background-image: url("../images/footballl3.jpg");
+  background-image: url("../images/newftb.jpg");
   background-color: lightgray;
-  background-position: 0px -50.54px;
-  background-size: 100% 163.823%;
+  background-position: center;
+  background-size: cover;
   background-repeat: no-repeat;
   height: 880px;
 }
@@ -520,10 +520,10 @@
 
 @media screen and (max-width: 576px){
   .football-page-hero {
-    background-image: url("../images/footballl3.jpg");
+    background-image: url("../images/newftb.jpg");
     background-color: lightgray;
-    background-position: 0px -50.54px;
-    background-size: 100% 163.823%;
+    background-position: center;
+    background-size: cover;
     background-repeat: no-repeat;
     height: 780px;
   }

@@ -1,8 +1,8 @@
 .events-hero {
-  background-image: url("../images/event3.jpg");
-  background-position: 0px -640.5px;
+  background-image: url("../images/sportevent_1-scaled.jpg");
+  background-position: center;
   background-repeat: no-repeat;
-  background-size: 100% 245.734%;
+  background-size: cover;
   height: 880px;
   position: relative;
   /* border-bottom: 3px solid rgba(252, 252, 252, 0.42); */
@@ -269,7 +269,7 @@
     height: 700px;
   }
   .events-hero-text {
-    margin-top: 70px;
+    margin-top: 60px;
     width: 300px;
     text-align: center;
     font-size: 40px;

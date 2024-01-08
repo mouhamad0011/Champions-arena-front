@@ -19,9 +19,6 @@ function HomePage() {
   const [SisHovering, setSIsHovering] = useState(false);
   const [LisHovering, setLIsHovering] = useState(false);
   const [burgerMenu, setBurgerMenu] = useState(false);
-   
-
-
 
   const handleToggle = () => {
     const bars = document.querySelector(".bars");
@@ -63,10 +60,12 @@ function HomePage() {
   return (
     <div className="body">
       <header className="header">
-        <Link to="/"><img src={logo} alt="logo" className="logo" /></Link>
+        <Link to="/">
+          <img src={logo} alt="logo" className="logo" />
+        </Link>
         <div className="title">CHAMPIONS ARENA</div>
         <ul className="menu">
-          <li onMouseOver={handleSOnHover} >
+          <li onMouseOver={handleSOnHover}>
             Sports
             <span style={{ fontSize: "13px", paddingLeft: "3px" }}>
               &#11167;
@@ -78,24 +77,48 @@ function HomePage() {
               onMouseOver={handleSOnHover}
               onMouseOut={handleSOutHover}
             >
-              <div><Link to="/football" className="link">Football</Link></div>
-              <div><Link to="/basketball" className="link">Basketball</Link></div>
-              <div><Link to="/volleyball" className="link">Volleyball</Link></div>
-              <div><Link to="/tennis" className="link">Tennis</Link></div>
+              <div>
+                <Link to="/football" className="link">
+                  Football
+                </Link>
+              </div>
+              <div>
+                <Link to="/basketball" className="link">
+                  Basketball
+                </Link>
+              </div>
+              <div>
+                <Link to="/volleyball" className="link">
+                  Volleyball
+                </Link>
+              </div>
+              <div>
+                <Link to="/tennis" className="link">
+                  Tennis
+                </Link>
+              </div>
             </div>
           )}
           <Link to="/events" className="link">
-            <li>{language === "english" ? "Events" : "Evénements"}</li>
+            <li>Events</li>
           </Link>
-          <Link to="/cafeteria" className="link"><li>Cafeteria</li></Link>
-          <Link to="/store" className="link"><li>Store</li></Link>
-          <Link to="/about" className="link"><li>About</li></Link>
-          <Link to="/contact" className="link"><li>Contact</li></Link>
+          <Link to="/cafeteria" className="link">
+            <li>Cafeteria</li>
+          </Link>
+          <Link to="/store" className="link">
+            <li>Store</li>
+          </Link>
+          <Link to="/about" className="link">
+            <li>About</li>
+          </Link>
+          <Link to="/contact" className="link">
+            <li>Contact</li>
+          </Link>
         </ul>
         <div className="reg-lan">
           <button className="reg-button">
             <Link to="/connect" className="link">
-            {language === "english" ? "Connect" : "Relier"}
+              Connect
             </Link>
           </button>
           <img
@@ -121,12 +144,14 @@ function HomePage() {
         </div>
       </header>
       <header className="phone-header">
-        <Link to="/"><img src={logo} alt="logo" className="phone-logo" /></Link>
+        <Link to="/">
+          <img src={logo} alt="logo" className="phone-logo" />
+        </Link>
         <div className="phone-title">CHAMPIONS ARENA</div>
         <div className="phone-reg-lan">
           <button className="phone-reg-button">
-          <Link to="/connect" className="link">
-            {language === "english" ? "Connect" : "Relier"}
+            <Link to="/connect" className="link">
+              Connect
             </Link>
           </button>
           <img
@@ -169,29 +194,36 @@ function HomePage() {
         {burgerMenu && (
           <ul className="phone-menu">
             <li onMouseOver={handleSOnHover}>Sports</li>
-            <Link to="/events" className="link"><li>{language === "english" ? "Events" : "Evénements"}</li></Link> 
-            <Link to="/cafeteria" className="link"><li>Cafeteria</li></Link>
-            <Link to="/store" className="link"><li>Store</li></Link>
-            <Link to="/about" className="link"><li>About</li></Link>
-            <Link to="/contact" className="link"><li>Contact</li></Link>
+            <Link to="/events" className="link">
+              <li>{language === "english" ? "Events" : "Evénements"}</li>
+            </Link>
+            <Link to="/cafeteria" className="link">
+              <li>Cafeteria</li>
+            </Link>
+            <Link to="/store" className="link">
+              <li>Store</li>
+            </Link>
+            <Link to="/about" className="link">
+              <li>About</li>
+            </Link>
+            <Link to="/contact" className="link">
+              <li>Contact</li>
+            </Link>
           </ul>
         )}
       </header>
       <main>
         <div className="home-page-hero">
           <div className="see-more">
-            <div className="welcome">
-              {language === "english"
-                ? "Welcome to Champions arena"
-                : "Bienvenue à Champions arena"}
-            </div>
+            <div className="welcome">Welcome to Champions arena</div>
             <div className="welcome-detail">
-              {language === "english"
-                ? "In our website, you can find the sport you want and finally achieve your dream"
-                : "Sur notre site, vous pouvez trouver le sport que vous voulez et enfin réaliser votre rêve"}
+              In our website, you can find the sport you want and finally
+              achieve your dream
             </div>
             <button className="welcome-button">
-              {language === "english" ? "More about website" : "En savoir plus"}
+              <Link to="/about" className="link">
+                More about website
+              </Link>
               <span>&#8594;</span>
             </button>
           </div>
@@ -211,7 +243,11 @@ function HomePage() {
               />
             </svg>
             <div>Football</div>
-            <button><Link to="/football" className="link">Check out</Link></button>
+            <button>
+              <Link to="/football" className="link">
+                Check out
+              </Link>
+            </button>
           </div>
           <div className="sport">
             <svg
@@ -246,7 +282,11 @@ function HomePage() {
               />
             </svg>
             <div>Basketball</div>
-            <button><Link to="/basketball" className="link">Check out</Link></button>
+            <button>
+              <Link to="/basketball" className="link">
+                Check out
+              </Link>
+            </button>
           </div>
           <div className="sport">
             <svg
@@ -262,7 +302,11 @@ function HomePage() {
               />
             </svg>
             <div>Volleyball</div>
-            <button><Link to="/volleyball" className="link">Check out</Link></button>
+            <button>
+              <Link to="/volleyball" className="link">
+                Check out
+              </Link>
+            </button>
           </div>
           <div className="sport">
             <svg
@@ -284,7 +328,11 @@ function HomePage() {
               />
             </svg>
             <div>Tennis</div>
-            <button><Link to="/tennis" className="link">Check out</Link></button>
+            <button>
+              <Link to="/tennis" className="link">
+                Check out
+              </Link>
+            </button>
           </div>
         </div>
         <div className="home-events">
@@ -292,23 +340,24 @@ function HomePage() {
             {language === "english"
               ? "Looking for new activities?"
               : "À la recherche de nouvelles activités?"}{" "}
-            <span className="join">
-              {language === "english"
-                ? "Join our events!"
-                : "Participez à nos événements!"}
-            </span>
+            <span className="join">Join our events!</span>
           </div>
           <div className="home-events-div2">
-            {language === "english"
-              ? "At Champions arena, we always have events, such as important football, basketball, volleyball and tennis matches, broadcasting matches on huge screens and a lot more."
-              : "A Champions arena, nous organisons toujours des événements, tels que des matchs importants de football, de basket-ball, de volley-ball et de tennis, nous diffusons des matchs sur des écrans géants et bien d'autres choses encore."}
+            At Champions arena, we always have events, such as important
+            football, basketball, volleyball and tennis matches, broadcasting
+            matches on huge screens and a lot more.
           </div>
           <button>
-          <Link to="/events" className="link">See events</Link><span> &#8594;</span>
+            <Link to="/events" className="link">
+              See events
+            </Link>
+            <span> &#8594;</span>
           </button>
         </div>
         <div className="videos-container">
-          <div className="videos-text">{language === "english" ? "Our best clips" : "Nos meilleurs clips"}</div>
+          <div className="videos-text">
+            {language === "english" ? "Our best clips" : "Nos meilleurs clips"}
+          </div>
           <div className="videos">
             {football ? (
               <video
@@ -401,13 +450,25 @@ function HomePage() {
           </div>
           <div className="footer-div2">
             <ul className="menu2">
-            <Link to="/events" className="link"><li>{language === "english" ? "Events" : "Evénements"}</li></Link> 
-            <Link to="/cafeteria" className="link"><li>Cafeteria</li></Link>
-            <Link to="/store" className="link"><li>Store</li></Link>
-            <Link to="/about" className="link"><li>About</li></Link>
-            <Link to="/contact" className="link"><li>Contact</li></Link>
+              <Link to="/events" className="link">
+                <li>{language === "english" ? "Events" : "Evénements"}</li>
+              </Link>
+              <Link to="/cafeteria" className="link">
+                <li>Cafeteria</li>
+              </Link>
+              <Link to="/store" className="link">
+                <li>Store</li>
+              </Link>
+              <Link to="/about" className="link">
+                <li>About</li>
+              </Link>
+              <Link to="/contact" className="link">
+                <li>Contact</li>
+              </Link>
             </ul>
-            <div>© {language === "english" ? "Copyright" : "Droit d'auteur"} 2024</div>
+            <div>
+              © {language === "english" ? "Copyright" : "Droit d'auteur"} 2024
+            </div>
           </div>
         </div>
       </footer>
