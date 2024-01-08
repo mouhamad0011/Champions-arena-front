@@ -12,6 +12,8 @@ import money from "../images/money-bag-svgrepo-com (1).svg";
 import service from "../images/luggage-service-luggage-handling-svgrepo-com.svg";
 import gift from "../images/gift-svgrepo-com (1).svg";
 import event from "../images/ftbevent.jpg";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
 
 function Events() {
   const [language, setLanguage] = useState("english");
@@ -21,10 +23,10 @@ function Events() {
   const [SisHovering, setSIsHovering] = useState(false);
   const [LisHovering, setLIsHovering] = useState(false);
   const [burgerMenu, setBurgerMenu] = useState(false);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-  useEffect(() => {
-    document.removeEventListener("hover", handleSOutHover);
-  }, []);
 
   const handleToggle = () => {
     const bars = document.querySelector(".bars");
@@ -185,9 +187,9 @@ function Events() {
         </div>
         {burgerMenu && (
           <ul className="phone-menu">
-            <li onMouseOver={handleSOnHover}>Sports</li>
+            <li onClick={handleOpen}>Sports</li>
             <Link to="/events" className="link">
-              <li>{language === "english" ? "Events" : "Evénements"}</li>
+              <li>Events</li>
             </Link>
             <Link to="/cafeteria" className="link">
               <li>Cafeteria</li>
@@ -203,6 +205,36 @@ function Events() {
             </Link>
           </ul>
         )}
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box className="modal-box">
+            <span onClick={handleClose}>&#x2715;</span>
+            <div>
+              <Link to="/football" className="box-link">
+                Football
+              </Link>
+            </div>
+            <div>
+              <Link to="/basketball" className="box-link">
+                Basketball
+              </Link>
+            </div>
+            <div>
+              <Link to="/volleyball" className="box-link">
+                Volleyball
+              </Link>
+            </div>
+            <div>
+              <Link to="/tennis" className="box-link">
+                Tennis
+              </Link>
+            </div>
+          </Box>
+        </Modal>
       </header>
       <main>
         <div className="events-hero">

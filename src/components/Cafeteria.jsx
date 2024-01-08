@@ -24,8 +24,14 @@ import oreo from "../images/oreo-removebg-preview.png";
 import kinder from "../images/kinder-removebg-preview.png";
 import mnms from "../images/mnms-removebg-preview.png";
 import marshmellow from "../images/marsh-removebg-preview.png";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
 
+ 
 function Cafeteria() {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const [language, setLanguage] = useState("english");
   const [football, setFootball] = useState(false);
   const [basketball, setBasketball] = useState(false);
@@ -190,9 +196,9 @@ function Cafeteria() {
         </div>
         {burgerMenu && (
           <ul className="phone-menu">
-            <li onMouseOver={handleSOnHover}>Sports</li>
+            <li onClick={handleOpen}>Sports</li>
             <Link to="/events" className="link">
-              <li>{language === "english" ? "Events" : "Evénements"}</li>
+              <li>Events</li>
             </Link>
             <Link to="/cafeteria" className="link">
               <li>Cafeteria</li>
@@ -208,6 +214,36 @@ function Cafeteria() {
             </Link>
           </ul>
         )}
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box className="modal-box">
+            <span onClick={handleClose}>&#x2715;</span>
+            <div>
+              <Link to="/football" className="box-link">
+                Football
+              </Link>
+            </div>
+            <div>
+              <Link to="/basketball" className="box-link">
+                Basketball
+              </Link>
+            </div>
+            <div>
+              <Link to="/volleyball" className="box-link">
+                Volleyball
+              </Link>
+            </div>
+            <div>
+              <Link to="/tennis" className="box-link">
+                Tennis
+              </Link>
+            </div>
+          </Box>
+        </Modal>
       </header>
       <main>
         <div className="cafeteria-hero">

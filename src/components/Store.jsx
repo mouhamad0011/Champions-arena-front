@@ -23,8 +23,6 @@ import jacket2 from "../images/jacket2-removebg-preview.png";
 import messi from "../images/messi-removebg-preview.png";
 import socks from "../images/socks-removebg-preview.png";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 
 const style = {
@@ -54,6 +52,9 @@ function Store() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [Popen, setPOpen] = useState(false);
+  const handlePOpen = () => setPOpen(true);
+  const handlePClose = () => setPOpen(false);
   const handleToggle = () => {
     const bars = document.querySelector(".bars");
     bars.classList.toggle("active");
@@ -210,9 +211,9 @@ function Store() {
         </div>
         {burgerMenu && (
           <ul className="phone-menu">
-            <li onMouseOver={handleSOnHover}>Sports</li>
+            <li onClick={handleOpen}>Sports</li>
             <Link to="/events" className="link">
-              <li>{language === "english" ? "Events" : "Evénements"}</li>
+              <li>Events</li>
             </Link>
             <Link to="/cafeteria" className="link">
               <li>Cafeteria</li>
@@ -228,6 +229,36 @@ function Store() {
             </Link>
           </ul>
         )}
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box className="modal-box">
+            <span onClick={handleClose}>&#x2715;</span>
+            <div>
+              <Link to="/football" className="box-link">
+                Football
+              </Link>
+            </div>
+            <div>
+              <Link to="/basketball" className="box-link">
+                Basketball
+              </Link>
+            </div>
+            <div>
+              <Link to="/volleyball" className="box-link">
+                Volleyball
+              </Link>
+            </div>
+            <div>
+              <Link to="/tennis" className="box-link">
+                Tennis
+              </Link>
+            </div>
+          </Box>
+        </Modal>
       </header>
       <main>
         <div className="cafeteria-hero">
@@ -255,19 +286,19 @@ function Store() {
               <div className="price">
                 <div>20$</div>
               </div>
-              <img src={hoodie1} alt="" onClick={handleOpen} />
+              <img src={hoodie1} alt="" onClick={handlePOpen} />
               <div className="name">
                 <div>Sport hoodie</div>
               </div>
             </div>
             <Modal
-              open={open}
-              onClose={handleClose}
+              open={Popen}
+              onClose={handlePClose}
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"
             >
               <Box sx={style}>
-                <span onClick={handleClose} className="box-close">&#x2715;</span>
+                <span onClick={handlePClose} className="box-close">&#x2715;</span>
                 <img src={hoodie1} alt="" />
               </Box>
             </Modal>

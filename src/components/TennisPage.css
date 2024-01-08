@@ -141,7 +141,10 @@
     }
     @media screen and (max-width: 576px){
       .tennis-page-hero {
-        zoom: 70%;
+        /* background-position: center;*/
+        /* background-size: cover;  */
+        zoom: 60%;
+        
       }
       .t-cut2 {
         display: none;
