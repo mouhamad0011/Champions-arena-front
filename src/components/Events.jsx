@@ -45,24 +45,7 @@ function Events() {
   const handleLOutHover = () => {
     setLIsHovering(false);
   };
-  const handleV1Play = () => {
-    setFootball(true);
-  };
-  const handleV1Pause = () => {
-    setFootball(false);
-  };
-  const handleV2Play = () => {
-    setBasketball(true);
-  };
-  const handleV2Pause = () => {
-    setBasketball(false);
-  };
-  const handleV3Play = () => {
-    setTennis(true);
-  };
-  const handleV3Pause = () => {
-    setTennis(false);
-  };
+
   return (
     <div className="body">
       <header className="header">
@@ -109,10 +92,18 @@ function Events() {
           <Link to="/events" className="link">
             <li>{language === "english" ? "Events" : "Evénements"}</li>
           </Link>
-          <Link to="/cafeteria" className="link"><li>Cafeteria</li></Link>
-          <Link to="/store" className="link"><li>Store</li></Link>
-          <Link to="/about" className="link"><li>About</li></Link>
-          <Link to="/contact" className="link"><li>Contact</li></Link>
+          <Link to="/cafeteria" className="link">
+            <li>Cafeteria</li>
+          </Link>
+          <Link to="/store" className="link">
+            <li>Store</li>
+          </Link>
+          <Link to="/about" className="link">
+            <li>About</li>
+          </Link>
+          <Link to="/contact" className="link">
+            <li>Contact</li>
+          </Link>
         </ul>
 
         <div className="reg-lan">
@@ -145,12 +136,16 @@ function Events() {
       </header>
 
       <header className="phone-header">
-      <Link to="/"><img src={logo} alt="logo" className="phone-logo" /></Link>
+        <Link to="/">
+          <img src={logo} alt="logo" className="phone-logo" />
+        </Link>
         <div className="phone-title">CHAMPIONS ARENA</div>
         <div className="phone-reg-lan">
-        <Link to="/connect" className="link">
-            {language === "english" ? "Connect" : "Relier"}
+          <button className="phone-reg-button">
+            <Link to="/connect" className="link">
+              Connect
             </Link>
+          </button>
           <img
             className="phone-language"
             src={languagee}
@@ -191,11 +186,21 @@ function Events() {
         {burgerMenu && (
           <ul className="phone-menu">
             <li onMouseOver={handleSOnHover}>Sports</li>
-            <Link to="/events" className="link"><li>{language === "english" ? "Events" : "Evénements"}</li></Link> 
-            <Link to="/cafeteria" className="link"><li>Cafeteria</li></Link>
-            <Link to="/store" className="link"><li>Store</li></Link>
-            <Link to="/about" className="link"><li>About</li></Link>
-            <Link to="/contact" className="link"><li>Contact</li></Link>
+            <Link to="/events" className="link">
+              <li>{language === "english" ? "Events" : "Evénements"}</li>
+            </Link>
+            <Link to="/cafeteria" className="link">
+              <li>Cafeteria</li>
+            </Link>
+            <Link to="/store" className="link">
+              <li>Store</li>
+            </Link>
+            <Link to="/about" className="link">
+              <li>About</li>
+            </Link>
+            <Link to="/contact" className="link">
+              <li>Contact</li>
+            </Link>
           </ul>
         )}
       </header>
@@ -285,11 +290,21 @@ function Events() {
           </div>
           <div className="footer-div2">
             <ul className="menu2">
-            <Link to="/events" className="link"><li>{language === "english" ? "Events" : "Evénements"}</li></Link> 
-            <Link to="/cafeteria" className="link"><li>Cafeteria</li></Link>
-            <Link to="/store" className="link"><li>Store</li></Link>
-            <Link to="/about" className="link"><li>About</li></Link>
-            <Link to="/contact" className="link"><li>Contact</li></Link>
+              <Link to="/events" className="link">
+                <li>{language === "english" ? "Events" : "Evénements"}</li>
+              </Link>
+              <Link to="/cafeteria" className="link">
+                <li>Cafeteria</li>
+              </Link>
+              <Link to="/store" className="link">
+                <li>Store</li>
+              </Link>
+              <Link to="/about" className="link">
+                <li>About</li>
+              </Link>
+              <Link to="/contact" className="link">
+                <li>Contact</li>
+              </Link>
             </ul>
             <div>
               © {language === "english" ? "Copyright" : "Droit d'auteur"} 2024

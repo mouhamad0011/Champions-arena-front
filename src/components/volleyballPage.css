@@ -142,7 +142,9 @@
   }
   @media screen and (max-width: 576px){
     .volleyball-page-hero {
-      zoom: 70%;
+      background-position: center;
+      background-size: cover;
+      zoom: 60%;
     }
     .v-cut2 {
       display: none;
