@@ -228,6 +228,16 @@
   text-decoration: none;
   color: #006a4a;
 }
+.box-close{
+  position: absolute;
+  font-size: 40px;
+  color: black;
+  right: 5%;
+  top: 1%;
+}
+.box-close:hover{
+  cursor: pointer;
+}
 @media screen and (min-width: 700px) and (max-width: 835px){
   .cafeteria-hero .our-products {
     font-size: 30px;
@@ -402,5 +412,12 @@
     top: 60%;
     right: -5%;
     z-index: 2;
+  }
+  .box-close{
+    position: absolute;
+    font-size: 30px;
+    color: black;
+    right: 16.5%;
+    top: 1%;
   }
 }

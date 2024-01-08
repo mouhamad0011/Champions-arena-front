@@ -10,8 +10,13 @@ import insta from "../images/icons8-insta-48.png";
 import facebook from "../images/icons8-facebook-48.png";
 import tiktok from "../images/icons8-tic-tac-50 (1).png";
 import twitter from "../images/icons8-twitterx-50.png";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
 
 function HomePage() {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const [language, setLanguage] = useState("english");
   const [football, setFootball] = useState(false);
   const [basketball, setBasketball] = useState(false);
@@ -193,9 +198,9 @@ function HomePage() {
         </div>
         {burgerMenu && (
           <ul className="phone-menu">
-            <li onMouseOver={handleSOnHover}>Sports</li>
+            <li onClick={handleOpen}>Sports</li>
             <Link to="/events" className="link">
-              <li>{language === "english" ? "Events" : "Evénements"}</li>
+              <li>Events</li>
             </Link>
             <Link to="/cafeteria" className="link">
               <li>Cafeteria</li>
@@ -211,6 +216,36 @@ function HomePage() {
             </Link>
           </ul>
         )}
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box className="modal-box">
+            <span onClick={handleClose}>&#x2715;</span>
+            <div>
+              <Link to="/football" className="box-link">
+                Football
+              </Link>
+            </div>
+            <div>
+              <Link to="/basketball" className="box-link">
+                Basketball
+              </Link>
+            </div>
+            <div>
+              <Link to="/volleyball" className="box-link">
+                Volleyball
+              </Link>
+            </div>
+            <div>
+              <Link to="/tennis" className="box-link">
+                Tennis
+              </Link>
+            </div>
+          </Box>
+        </Modal>
       </header>
       <main>
         <div className="home-page-hero">

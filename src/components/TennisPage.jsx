@@ -10,8 +10,13 @@ import tiktok from "../images/icons8-tic-tac-50 (1).png";
 import twitter from "../images/icons8-twitterx-50.png";
 import court from "../images/tenniscourt.jpg";
 import lebron from "../images/tenniscut.png";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
 
 function TennisPage() {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const [language, setLanguage] = useState("english");
   const [SisHovering, setSIsHovering] = useState(false);
   const [LisHovering, setLIsHovering] = useState(false);
@@ -179,9 +184,9 @@ function TennisPage() {
         </div>
         {burgerMenu && (
           <ul className="phone-menu">
-            <li onMouseOver={handleSOnHover}>Sports</li>
+            <li onClick={handleOpen}>Sports</li>
             <Link to="/events" className="link">
-              <li>{language === "english" ? "Events" : "Evénements"}</li>
+              <li>Events</li>
             </Link>
             <Link to="/cafeteria" className="link">
               <li>Cafeteria</li>
@@ -197,6 +202,36 @@ function TennisPage() {
             </Link>
           </ul>
         )}
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box className="modal-box">
+            <span onClick={handleClose}>&#x2715;</span>
+            <div>
+              <Link to="/football" className="box-link">
+                Football
+              </Link>
+            </div>
+            <div>
+              <Link to="/basketball" className="box-link">
+                Basketball
+              </Link>
+            </div>
+            <div>
+              <Link to="/volleyball" className="box-link">
+                Volleyball
+              </Link>
+            </div>
+            <div>
+              <Link to="/tennis" className="box-link">
+                Tennis
+              </Link>
+            </div>
+          </Box>
+        </Modal>
       </header>
       <main>
         <div className="tennis-page-hero">
@@ -314,7 +349,7 @@ function TennisPage() {
           <img src={lebron} alt="messi" />
         </div>
       </main>
-      <footer className="v-footer">
+      <footer className="t-footer">
         <div className="footer-div">
           <div className="footer-div1">
             <div className="footer-logo-title">

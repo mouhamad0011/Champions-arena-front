@@ -12,8 +12,13 @@ import terrainA from "../images/terrain1.jpg";
 import terrainB from "../images/terrain2.jpg";
 import terrainC from "../images/terrain3.jpg";
 import messi from "../images/Rectangle94.png";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
 
 function FootballPage() {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const [language, setLanguage] = useState("english");
   const [SisHovering, setSIsHovering] = useState(false);
   const [LisHovering, setLIsHovering] = useState(false);
@@ -152,14 +157,44 @@ function FootballPage() {
         </div>
         {burgerMenu && (
           <ul className="phone-menu">
-            <li onMouseOver={handleSOnHover}>Sports</li>
-            <Link to="/events" className="link"><li>{language === "english" ? "Events" : "Evénements"}</li></Link> 
+            <li onClick={handleOpen}>Sports</li>
+            <Link to="/events" className="link"><li>Events</li></Link> 
             <Link to="/cafeteria" className="link"><li>Cafeteria</li></Link>
             <Link to="/store" className="link"><li>Store</li></Link>
             <Link to="/about" className="link"><li>About</li></Link>
             <Link to="/contact" className="link"><li>Contact</li></Link>
           </ul>
         )}
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box className="modal-box">
+            <span onClick={handleClose}>&#x2715;</span>
+            <div>
+              <Link to="/football" className="box-link">
+                Football
+              </Link>
+            </div>
+            <div>
+              <Link to="/basketball" className="box-link">
+                Basketball
+              </Link>
+            </div>
+            <div>
+              <Link to="/volleyball" className="box-link">
+                Volleyball
+              </Link>
+            </div>
+            <div>
+              <Link to="/tennis" className="box-link">
+                Tennis
+              </Link>
+            </div>
+          </Box>
+        </Modal>
       </header>
       <main>
         <div className="football-page-hero">

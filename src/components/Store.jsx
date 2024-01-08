@@ -267,6 +267,7 @@ function Store() {
               aria-describedby="modal-modal-description"
             >
               <Box sx={style}>
+                <span onClick={handleClose} className="box-close">&#x2715;</span>
                 <img src={hoodie1} alt="" />
               </Box>
             </Modal>

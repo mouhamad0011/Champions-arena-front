@@ -41,7 +41,7 @@
     position: relative;
   }
 
-  @media screen and (min-width: 819px) and (max-width: 835px) {
+  @media screen and (min-width: 819px) and (max-width: 900px) {
     .b-cut2 {
       width: 580px;
       height: 150px;
@@ -152,6 +152,9 @@
     }
   }
   @media screen and (max-width: 576px){
+    .basketball-page-hero {
+      zoom: 60%;
+    }
     .b-cut2 {
       display: none;
     }
@@ -164,8 +167,5 @@
       background-repeat: no-repeat;
       background-size: cover;
       position: relative;
-    }
-    .stadiums{
-      height: 600px;
     }
   }

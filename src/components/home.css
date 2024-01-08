@@ -7,13 +7,13 @@
   margin: 0;
   padding: 0;
 }
-body{
-  overflow-x:hidden;
+body {
+  overflow-x: hidden;
 }
-.phone-header{
+.phone-header {
   display: none;
 }
-.link{
+.link {
   text-decoration: none;
   color: #fff;
 }
@@ -69,7 +69,7 @@ body{
   height: 33px;
   flex-shrink: 0;
 }
-.reg-button .link{
+.reg-button .link {
   text-decoration: none;
   color: #fff;
 }
@@ -95,7 +95,7 @@ body{
   border: 1px solid #d21034;
   scale: 1.05;
 }
-.sports .link{
+.sports .link {
   text-decoration: none;
   color: #fff;
 }
@@ -176,7 +176,7 @@ body{
 .welcome-button {
   border-radius: 5px;
   background: #d21034;
-  width:fit-content;
+  width: fit-content;
   height: 58px;
   flex-shrink: 0;
   color: #fff;
@@ -367,9 +367,9 @@ video {
   width: 450px;
   height: 350px;
 }
-.videos svg:hover{
+.videos svg:hover {
   cursor: pointer;
-  scale: 1.05; 
+  scale: 1.05;
 }
 .footer {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
@@ -452,7 +452,7 @@ video {
   cursor: pointer;
 }
 
-@media screen and (min-width: 576px) and (max-width: 835px) {
+@media screen and (min-width: 576px) and (max-width: 900px) {
   .header {
     gap: 25px;
   }
@@ -587,8 +587,7 @@ video {
   }
 }
 
-
-@media screen and (max-width: 576px){
+@media screen and (max-width: 576px) {
   .header {
     display: none;
   }
@@ -598,37 +597,37 @@ video {
   .trigger {
     border: 2px solid #fff;
     border-radius: 10px;
-}
+  }
 
-.bars {
-  width: 40px;
-  cursor: pointer;
-}
-.bars .line {
-  fill: none;
-  stroke: #fff;
-  stroke-width: 4;
-  stroke-linecap: square;
-  transition: stroke-dasharray 400ms,  stroke-dashoffset 400ms;
-}
-.bars .line.top {
-  stroke-dasharray: 40 172;
-}
-.bars .line.middle {
-  stroke-dasharray: 40 111;
-}
-.bars .line.bottom {
-  stroke-dasharray: 40 172;
-}
-.bars.active .top {
-  stroke-dashoffset: -132px;
-}
-.bars.active .middle {
-  stroke-dashoffset: -71px;
-}
-.bars.active .bottom {
-  stroke-dashoffset: -132px;
-}
+  .bars {
+    width: 40px;
+    cursor: pointer;
+  }
+  .bars .line {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 4;
+    stroke-linecap: square;
+    transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+  }
+  .bars .line.top {
+    stroke-dasharray: 40 172;
+  }
+  .bars .line.middle {
+    stroke-dasharray: 40 111;
+  }
+  .bars .line.bottom {
+    stroke-dasharray: 40 172;
+  }
+  .bars.active .top {
+    stroke-dashoffset: -132px;
+  }
+  .bars.active .middle {
+    stroke-dashoffset: -71px;
+  }
+  .bars.active .bottom {
+    stroke-dashoffset: -132px;
+  }
   .phone-header {
     width: 100%;
     height: 100px;
@@ -645,7 +644,7 @@ video {
     align-items: center;
   }
   .phone-menu {
-    width: 80px; 
+    width: 80px;
     height: fit-content;
     z-index: 1;
     display: flex;
@@ -713,23 +712,40 @@ video {
     border: 1px solid #d21034;
     scale: 1.05;
   }
-  .phone-sports {
+  .modal-box {
     position: absolute;
-    left: 49%;
-    top: 10%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 350px;
+    border: none;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    padding: 10px;
-    border-radius: 10px;
+    justify-content: center;
+    gap: 30px;
+    color: black;
     background-color: #333;
-    z-index: 1;
   }
-  .phone-sports div:hover {
-    scale: 1.15;
-    cursor: pointer;
+  .modal-box span{
+    font-size: 30px;
+    position: absolute;
+    color: white;
+    right: 5%;
+    top: 3%;
   }
+  .modal-box .box-link{
+    text-decoration: none;
+    color: #fff;
+    font-size: 30px;
+    font-weight: 400;
+  }
+  .modal-box .box-link:hover{
+    border: 2px solid white;
+    padding: 10px;
+  }
+
   .phone-language:hover {
     cursor: pointer;
   }
@@ -751,9 +767,6 @@ video {
     z-index: 1;
   }
 
-
-
-
   .home-page-hero {
     height: 450px;
   }
@@ -771,7 +784,7 @@ video {
     font-size: 18px;
   }
   .welcome-button {
-    width:fit-content;
+    width: fit-content;
     padding: 5px;
     height: 40px;
     font-size: 15px;
@@ -779,13 +792,13 @@ video {
   .sports-icons {
     height: 650px;
     flex-wrap: wrap;
-    gap:20px;
+    gap: 20px;
   }
   .sport {
     flex: 40%;
     gap: 50px;
   }
-  .sport svg{
+  .sport svg {
     width: 60px;
     height: 60px;
   }
@@ -858,7 +871,7 @@ video {
     height: 200px;
     position: absolute;
     bottom: 0;
-    left: 0; 
+    left: 0;
     display: flex;
     flex-direction: column;
     align-items: normal;
@@ -896,7 +909,7 @@ video {
     width: 40px;
     height: 40px;
   }
-  
+
   .footer-div2 {
     display: flex;
     flex-direction: row;
@@ -904,7 +917,7 @@ video {
     justify-content: center;
     margin-top: 10px;
   }
-  
+
   .menu2 {
     display: none;
   }
@@ -915,5 +928,4 @@ video {
     line-height: normal;
     list-style-type: none;
   }
-  
 }

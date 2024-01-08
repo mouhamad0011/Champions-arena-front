@@ -42,7 +42,7 @@
     font-weight: 400;
     line-height: normal;
   }
-  .v-footer {
+  .t-footer {
       background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)),
         url("../images/tennisfooter.jpg");
       height: 325px;
@@ -140,21 +140,27 @@
       
     }
     @media screen and (max-width: 576px){
+      .tennis-page-hero {
+        zoom: 70%;
+      }
       .t-cut2 {
         display: none;
       }
       .t-cut1 {
        display: none;
       }
-      .v-footer {
-        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)),
-          url("../images/tennisfooter.jpg");
-        height: 200px;
+      .t-footer {
+        height: 210px;
         width: 100%;
-        background-position: -2.171px -1003.073px ;
+        background-position: -2.171px -633.073px ;
         background-repeat: no-repeat;
         background-size:100% 590.359%  ;
         position: relative;
+      }
+      .t-footer .footer-div{
+        padding-top: 10px;
+        height: 200px;
+        background: rgba(0, 0, 0, 0.3);
       }
       .stadiums{
         height: 600px;
