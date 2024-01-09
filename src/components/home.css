@@ -159,18 +159,16 @@ body {
 }
 .welcome {
   color: #fff;
-  font-family: Poppins;
-  font-size: 32px;
+  font-size: 28px;
   font-style: normal;
-  font-weight: 200;
+  font-weight: 400;
   line-height: normal;
 }
 .welcome-detail {
   color: #fff;
-  font-family: Poppins;
-  font-size: 24px;
+  font-size: 22px;
   font-style: normal;
-  font-weight: 200;
+  font-weight: 400;
   line-height: normal;
 }
 .welcome-button {
@@ -182,7 +180,7 @@ body {
   color: #fff;
   font-size: 24px;
   font-style: normal;
-  font-weight: 200;
+  font-weight: 400;
   line-height: normal;
   border: none;
   padding: 10px;
@@ -456,7 +454,7 @@ video {
   align-items: center;
   justify-content: center;
 }
-@media screen and (min-width: 576px) and (max-width: 900px) {
+@media screen and (min-width: 576px) and (max-width: 1010px) {
   .header {
     gap: 25px;
   }

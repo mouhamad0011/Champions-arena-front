@@ -259,7 +259,7 @@ function HomePage() {
               <Link to="/about" className="link">
                 More about website
               </Link>
-              <span>&#8594;</span>
+              <span style={{paddingLeft:"5px"}}>&#8594;</span>
             </button>
           </div>
         </div>

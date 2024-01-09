@@ -9,6 +9,7 @@ import Events from "./components/Events";
 import ContactPage from "./components/Contact";
 import Cafeteria from "./components/Cafeteria";
 import Store from "./components/Store";
+import About from "./components/About";
 function App() {
   return (
     <BrowserRouter>
@@ -23,6 +24,7 @@ function App() {
         <Route path="/contact" element={<ContactPage/>} />
         <Route path="/cafeteria" element={<Cafeteria/>} />
         <Route path="/store" element={<Store/>} />
+        <Route path="/about" element={<About/>} />
      </Routes>
     </BrowserRouter>
   );
