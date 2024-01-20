@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { useNagivate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./home.css";
 import "./contact.css";
 import logo from "../images/champions-arena-logo.png";
@@ -8,8 +8,12 @@ import insta from "../images/icons8-insta-48.png";
 import facebook from "../images/icons8-facebook-48.png";
 import tiktok from "../images/icons8-tic-tac-50 (1).png";
 import twitter from "../images/icons8-twitterx-50.png";
+import { useForm, ValidationError } from '@formspree/react';
 
+ 
 function ContactPage() {
+  const [state, handleSubmit] = useForm("xbjnlvnq");
+ 
   const [language, setLanguage] = useState("english");
   const [SisHovering, setSIsHovering] = useState(false);
   const [LisHovering, setLIsHovering] = useState(false);
@@ -35,6 +39,11 @@ function ContactPage() {
     setLIsHovering(false);
   };
   
+  const token = localStorage.getItem("token");
+  const handlelogout = () => {
+    localStorage.removeItem("token");
+  };
+
   return (
     <div className="body">
       <header className="header">
@@ -69,9 +78,15 @@ function ContactPage() {
         </ul>
         <div className="reg-lan">
           <button className="reg-button">
-            <Link to="/connect" className="link">
-            {language === "english" ? "Connect" : "Relier"}
-            </Link>
+           {!token ? (
+              <Link to="/connect" className="link">
+                Connect
+              </Link>
+            ) : (
+              <Link to="" className="link" onClick={handlelogout}>
+                Log out
+              </Link>
+            )}
           </button>
           <img
             className="language"
@@ -100,9 +115,15 @@ function ContactPage() {
         <div className="phone-title">CHAMPIONS ARENA</div>
         <div className="phone-reg-lan">
           <button className="phone-reg-button">
-          <Link to="/connect" className="link">
-            {language === "english" ? "Connect" : "Relier"}
-            </Link>
+          {!token ? (
+              <Link to="/connect" className="link">
+                Connect
+              </Link>
+            ) : (
+              <Link to="" className="link" onClick={handlelogout}>
+                Log out
+              </Link>
+            )}
           </button>
           <img
             className="phone-language"
@@ -153,7 +174,7 @@ function ContactPage() {
         )}
       </header>
       <main className="contact-container">
-            <form className="contact-form">
+            <form className="contact-form" onSubmit={handleSubmit}>
                 <div className="text-cont">
                     <div className="lets-talk">Let's talk</div>
                     <div className="ask">Ask us your questions or leave a message</div>
@@ -170,7 +191,7 @@ function ContactPage() {
                     <div className="label">Message</div>
                     <input type="text" placeholder="Your message"/>
                 </div>
-                <button>Submit</button>
+                <button type="submit" disabled={state.submitting}>Submit</button>
             </form>
 
       </main>

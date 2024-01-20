@@ -1,5 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { useNagivate, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./footballPage.css";
 import logo from "../images/champions-arena-logo.png";
 import languagee from "../images/global-svgrepo-com (2).svg";
@@ -7,18 +9,32 @@ import insta from "../images/icons8-insta-48.png";
 import facebook from "../images/icons8-facebook-48.png";
 import tiktok from "../images/icons8-tic-tac-50 (1).png";
 import twitter from "../images/icons8-twitterx-50.png";
-import grandTerrain from "../images/grandterrain.jpg";
-import terrainA from "../images/terrain1.jpg";
-import terrainB from "../images/terrain2.jpg";
-import terrainC from "../images/terrain3.jpg";
 import messi from "../images/Rectangle94.png";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import { getTerrainsBySport } from "../redux/actions/terrain";
+import { getUserID } from "../UserInfo/GetUserInfo";
+import { addBookingByUser } from "../redux/actions/booking";
+import { getBookingsBydate } from "../redux/actions/booking";
 
 function FootballPage() {
+  const userId = getUserID();
+  const terrains = useSelector((state) => state.terrains);
+  const bookings = useSelector((state) => state.bookings);
+  const dispatch = useDispatch();
+  const [stadium, setStadium] = useState("Grand terrain");
+  const [stadiumId, setStadiumId] = useState("65a26f3e1c912c4b41ccc4a7");
+  const [hourPrice, setHourPrice] = useState(30);
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [duration, setDuration] = useState("");
+  const [bill, setBill] = useState("");
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [bookingOpen, setBookingOpen] = useState(false);
+  const handleBookingOpen = () => setBookingOpen(true);
+  const handleBookingClose = () => setBookingOpen(false);
   const [language, setLanguage] = useState("english");
   const [SisHovering, setSIsHovering] = useState(false);
   const [LisHovering, setLIsHovering] = useState(false);
@@ -49,10 +65,45 @@ function FootballPage() {
     setIsOpen(!isOpen);
   };
 
+  useEffect(() => {
+    dispatch(getTerrainsBySport("football"));
+  }, [dispatch]);
+
+  var today = new Date();
+  //console.log(today.toLocaleDateString("en-GB"))
+  var day2 = new Date(today);
+  day2.setDate(day2.getDate() + 1);
+  var day3 = new Date(today);
+  day3.setDate(day3.getDate() + 2);
+  var day4 = new Date(today);
+  day4.setDate(day4.getDate() + 3);
+  var day5 = new Date(today);
+  day5.setDate(day5.getDate() + 4);
+  today = today.toString().split(" ")[2];
+  day2 = day2.toString().split(" ")[2];
+  day3 = day3.toString().split(" ")[2];
+  day4 = day4.toString().split(" ")[2];
+  day5 = day5.toString().split(" ")[2];
+
+  const token = localStorage.getItem("token");
+  const handlelogout = () => {
+    localStorage.removeItem("token");
+  };
+
+  
+
+
+  
+  
+
+  
+  
   return (
     <div className="body">
       <header className="header">
-      <Link to="/"><img src={logo} alt="logo" className="logo" /></Link>
+        <Link to="/">
+          <img src={logo} alt="logo" className="logo" />
+        </Link>
         <div className="title">CHAMPIONS ARENA</div>
         <ul className="menu">
           <li onMouseOver={handleSOnHover}>
@@ -67,26 +118,56 @@ function FootballPage() {
               onMouseOver={handleSOnHover}
               onMouseOut={handleSOutHover}
             >
-              <div><Link to="/football" className="link">Football</Link></div>
-              <div><Link to="/basketball" className="link">Basketball</Link></div>
-              <div><Link to="/volleyball" className="link">Volleyball</Link></div>
-              <div><Link to="/tennis" className="link">Tennis</Link></div>
+              <div>
+                <Link to="/football" className="link">
+                  Football
+                </Link>
+              </div>
+              <div>
+                <Link to="/basketball" className="link">
+                  Basketball
+                </Link>
+              </div>
+              <div>
+                <Link to="/volleyball" className="link">
+                  Volleyball
+                </Link>
+              </div>
+              <div>
+                <Link to="/tennis" className="link">
+                  Tennis
+                </Link>
+              </div>
             </div>
           )}
           <Link to="/events" className="link">
             <li>{language === "english" ? "Events" : "Evénements"}</li>
           </Link>
-          <Link to="/cafeteria" className="link"><li>Cafeteria</li></Link>
-          <Link to="/store" className="link"><li>Store</li></Link>
-          <Link to="/about" className="link"><li>About</li></Link>
-          <Link to="/contact" className="link"><li>Contact</li></Link>
+          <Link to="/cafeteria" className="link">
+            <li>Cafeteria</li>
+          </Link>
+          <Link to="/store" className="link">
+            <li>Store</li>
+          </Link>
+          <Link to="/about" className="link">
+            <li>About</li>
+          </Link>
+          <Link to="/contact" className="link">
+            <li>Contact</li>
+          </Link>
         </ul>
 
         <div className="reg-lan">
           <button className="reg-button">
-            <Link to="/connect" className="link">
-              {language === "english" ? "Connect" : "Relier"}
-            </Link>
+            {!token ? (
+              <Link to="/connect" className="link">
+                Connect
+              </Link>
+            ) : (
+              <Link to="" className="link" onClick={handlelogout}>
+                Log out
+              </Link>
+            )}
           </button>
           <img
             className="language"
@@ -112,11 +193,21 @@ function FootballPage() {
       </header>
 
       <header className="phone-header">
-      <Link to="/"><img src={logo} alt="logo" className="phone-logo" /></Link>
+        <Link to="/">
+          <img src={logo} alt="logo" className="phone-logo" />
+        </Link>
         <div className="phone-title">CHAMPIONS ARENA</div>
         <div className="phone-reg-lan">
           <button className="phone-reg-button">
-            {language === "english" ? "Connect" : "Relier"}
+            {!token ? (
+              <Link to="/connect" className="link">
+                Connect
+              </Link>
+            ) : (
+              <Link to="" className="link" onClick={handlelogout}>
+                Log out
+              </Link>
+            )}
           </button>
           <img
             className="phone-language"
@@ -158,11 +249,21 @@ function FootballPage() {
         {burgerMenu && (
           <ul className="phone-menu">
             <li onClick={handleOpen}>Sports</li>
-            <Link to="/events" className="link"><li>Events</li></Link> 
-            <Link to="/cafeteria" className="link"><li>Cafeteria</li></Link>
-            <Link to="/store" className="link"><li>Store</li></Link>
-            <Link to="/about" className="link"><li>About</li></Link>
-            <Link to="/contact" className="link"><li>Contact</li></Link>
+            <Link to="/events" className="link">
+              <li>Events</li>
+            </Link>
+            <Link to="/cafeteria" className="link">
+              <li>Cafeteria</li>
+            </Link>
+            <Link to="/store" className="link">
+              <li>Store</li>
+            </Link>
+            <Link to="/about" className="link">
+              <li>About</li>
+            </Link>
+            <Link to="/contact" className="link">
+              <li>Contact</li>
+            </Link>
           </ul>
         )}
         <Modal
@@ -220,34 +321,16 @@ function FootballPage() {
         <div className="f-stadiums">
           <div className="stadiums-title">Our stadiums</div>
           <div className="stadiums-terrain">
-            <div className="stadiums-terrain-single">
-              <img src={grandTerrain} alt="grandTerrain" />
-              <div>
-                <div>Grand terrain</div>
-                <div className="dimensions">(90m - 50m)</div>
-              </div>
-            </div>
-            <div className="stadiums-terrain-single">
-              <img src={terrainA} alt="terrainA" />
-              <div>
-                <div>Terrain A </div>
-                <div className="dimensions">(45m - 27m)</div>
-              </div>
-            </div>
-            <div className="stadiums-terrain-single">
-              <img src={terrainB} alt="terrainB" />
-              <div>
-                <div>Terrain B </div>
-                <div className="dimensions">(45m - 27m)</div>
-              </div>
-            </div>
-            <div className="stadiums-terrain-single">
-              <img src={terrainC} alt="terrainC" />
-              <div>
-                <div>Terrain C </div>
-                <div className="dimensions">(45m - 27m)</div>
-              </div>
-            </div>
+            {terrains &&
+              terrains.map((terrain, index) => (
+                <div className="stadiums-terrain-single" key={index}>
+                  <img src={terrain.image} alt={terrain.name} />
+                  <div>
+                    <div>{terrain.name}</div>
+                    <div className="dimensions">({terrain.dimensions})</div>
+                  </div>
+                </div>
+              ))}
           </div>
         </div>
         <div className="booking-container">
@@ -255,26 +338,35 @@ function FootballPage() {
             <div className="booking-schedule">SCHEDULE AND BOOKINGS</div>
             <div className="dropdown">
               <button className="button" onClick={toggleDropdown}>
-                Grand terrain{" "}
+                {stadium}{" "}
                 <span style={{ fontSize: "18px", paddingLeft: "3px" }}>
                   &#11167;
                 </span>
               </button>
               {isOpen && (
                 <div className="dropdown-list">
-                  <div>Grand terrain</div>
-                  <div>Terrain A</div>
-                  <div>Terrain B</div>
-                  <div>Terrain C</div>
+                  {terrains &&
+                    terrains.map((terrain, index) => (
+                      <div
+                        key={index}
+                        onClick={() => {
+                          setStadium(terrain.name);
+                          setStadiumId(terrain._id);
+                          setHourPrice(terrain.hourPrice);
+                        }}
+                      >
+                        {terrain.name}
+                      </div>
+                    ))}
                 </div>
               )}
             </div>
             <div className="calendar-days">
-              <div className="calendar-days-day">30</div>
-              <div className="calendar-days-day">31</div>
-              <div className="calendar-days-day">1</div>
-              <div className="calendar-days-day">2</div>
-              <div className="calendar-days-day">3</div>
+              <div className="calendar-days-day">{today}</div>
+              <div className="calendar-days-day">{day2}</div>
+              <div className="calendar-days-day">{day3}</div>
+              <div className="calendar-days-day">{day4}</div>
+              <div className="calendar-days-day">{day5}</div>
             </div>
             <div className="booking-expamles">
               <div className="booking-expamle">
@@ -342,7 +434,53 @@ function FootballPage() {
               <div>
                 If you haven’t played yet in our stadiums, you’re losing.
               </div>
-              <button>BOOK AND PLAY</button>
+              <Link className="link" to="/booking">
+                <button>BOOK AND PLAY</button>
+              </Link>
+              {/* <Modal
+                open={bookingOpen}
+                onClose={handleBookingClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box className="booking-box">
+                  <span onClick={handleBookingClose} className="box-close">
+                    &#x2715;
+                  </span>
+                  <div className="stad-name">{stadium}</div>
+                  <div className="choose-date">
+                    Choose date{" "}
+                    <input
+                      type="date"
+                      onChange={(e) =>{setDate(e.target.value);}}
+                    />
+                  </div>
+                  <div className="duration">
+                    1 hour
+                    <input
+                      type="radio"
+                      value="1"
+                      onChange={(e) => setDuration(e.target.value)}
+                      name="duration"
+                    />
+                    2 hours
+                    <input
+                      type="radio"
+                      value="2"
+                      onChange={(e) => setDuration(e.target.value)}
+                      name="duration"
+                    />
+                  </div>
+                  <div className="time">
+                    <select name="" id="">
+                    {filteredSlots && filteredSlots.map((slot, index)=>(
+                      <option value={slot} key={index}>{slot}</option>
+                    ))}
+                    </select>
+                  </div>
+                  <div className="bill">{duration * hourPrice}</div>
+                </Box>
+              </Modal> */}
             </div>
           </div>
           <img src={messi} alt="messi" />
@@ -364,11 +502,21 @@ function FootballPage() {
           </div>
           <div className="footer-div2">
             <ul className="menu2">
-            <Link to="/events" className="link"><li>{language === "english" ? "Events" : "Evénements"}</li></Link> 
-            <Link to="/cafeteria" className="link"><li>Cafeteria</li></Link>
-            <Link to="/store" className="link"><li>Store</li></Link>
-            <Link to="/about" className="link"><li>About</li></Link>
-            <Link to="/contact" className="link"><li>Contact</li></Link>
+              <Link to="/events" className="link">
+                <li>{language === "english" ? "Events" : "Evénements"}</li>
+              </Link>
+              <Link to="/cafeteria" className="link">
+                <li>Cafeteria</li>
+              </Link>
+              <Link to="/store" className="link">
+                <li>Store</li>
+              </Link>
+              <Link to="/about" className="link">
+                <li>About</li>
+              </Link>
+              <Link to="/contact" className="link">
+                <li>Contact</li>
+              </Link>
             </ul>
             <div>
               © {language === "english" ? "Copyright" : "Droit d'auteur"} 2024

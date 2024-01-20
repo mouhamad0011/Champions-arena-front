@@ -42,6 +42,11 @@ function About() {
   const handleLOutHover = () => {
     setLIsHovering(false);
   };
+  const token = localStorage.getItem("token");
+  const handlelogout = () => {
+    localStorage.removeItem("token");
+  };
+
   return (
     <div className="body">
       <header className="header">
@@ -102,9 +107,15 @@ function About() {
         </ul>
         <div className="reg-lan">
           <button className="reg-button">
-            <Link to="/connect" className="link">
-              Connect
-            </Link>
+            {!token ? (
+              <Link to="/connect" className="link">
+                Connect
+              </Link>
+            ) : (
+              <Link to="" className="link" onClick={handlelogout}>
+                Log out
+              </Link>
+            )}
           </button>
           <img
             className="language"
@@ -135,9 +146,15 @@ function About() {
         <div className="phone-title">CHAMPIONS ARENA</div>
         <div className="phone-reg-lan">
           <button className="phone-reg-button">
-            <Link to="/connect" className="link">
-              Connect
-            </Link>
+          {!token ? (
+              <Link to="/connect" className="link">
+                Connect
+              </Link>
+            ) : (
+              <Link to="" className="link" onClick={handlelogout}>
+                Log out
+              </Link>
+            )}
           </button>
           <img
             className="phone-language"
@@ -369,8 +386,8 @@ function About() {
           </div>
           <div className="memberships">
             <div className="membership">
-              <div className="top-part">          
-                <img src={first} alt="" />  
+              <div className="top-part">
+                <img src={first} alt="" />
                 <div className="price">50$</div>
                 <div className="per-month">PER MONTH</div>
               </div>
@@ -385,8 +402,8 @@ function About() {
               </div>
             </div>
             <div className="membership2">
-            <div className="top-part">          
-                <img src={second} alt="" />  
+              <div className="top-part">
+                <img src={second} alt="" />
                 <div className="price">125$</div>
                 <div className="per-month">PER MONTH</div>
               </div>
@@ -401,8 +418,8 @@ function About() {
               </div>
             </div>
             <div className="membership">
-            <div className="top-part">          
-                <img src={third} alt="" />  
+              <div className="top-part">
+                <img src={third} alt="" />
                 <div className="price">250$</div>
                 <div className="per-month">PER MONTH</div>
               </div>

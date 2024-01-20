@@ -1,5 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { useNagivate, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./home.css";
 import "./cafeteria.css";
 import logo from "../images/champions-arena-logo.png";
@@ -12,30 +14,19 @@ import croissant from "../images/croissant-removebg-preview.png";
 import coffe from "../images/coffee-removebg-preview.png";
 import sitos from "../images/sitos-removebg-preview.png";
 import lays from "../images/chips-removebg-preview.png";
-import dairyMilk from "../images/dairy-removebg-preview.png";
-import reeses from "../images/reeses-removebg-preview.png";
-import kitkat from "../images/kitkat-removebg-preview.png";
-import pepsi from "../images/pepsi.jpg";
-import prime from "../images/prime-removebg-preview.png";
-import iceCream from "../images/icecream-removebg-preview.png";
-import pringles from "../images/pringles-removebg-preview.png";
-import conesChips from "../images/cones-removebg-preview.png";
-import oreo from "../images/oreo-removebg-preview.png";
-import kinder from "../images/kinder-removebg-preview.png";
-import mnms from "../images/mnms-removebg-preview.png";
-import marshmellow from "../images/marsh-removebg-preview.png";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import { getAllCafeteriaItems } from "../redux/actions/cafeteria";
+import Example from "../loading/Example";
 
- 
 function Cafeteria() {
+  const cafeteria = useSelector((state) => state.cafeteria);
+  const dispatch = useDispatch();
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [language, setLanguage] = useState("english");
-  const [football, setFootball] = useState(false);
-  const [basketball, setBasketball] = useState(false);
-  const [tennis, setTennis] = useState(false);
   const [SisHovering, setSIsHovering] = useState(false);
   const [LisHovering, setLIsHovering] = useState(false);
   const [burgerMenu, setBurgerMenu] = useState(false);
@@ -60,6 +51,16 @@ function Cafeteria() {
     setLIsHovering(false);
   };
 
+  useEffect(() => {
+    dispatch(getAllCafeteriaItems());
+  }, []);
+
+
+  const token = localStorage.getItem("token");
+  const handlelogout = () => {
+    localStorage.removeItem("token");
+  };
+  
   return (
     <div className="body">
       <header className="header">
@@ -259,72 +260,33 @@ function Cafeteria() {
           <img src={lays} alt="lays" className="lays" />
         </div>
         <div className="cafeteria-store">
-        <div className="menu">
-          <div className="cafeteria"><div>Cafeteria</div></div>
-          <div className="store"><Link to="/store" className="link">Store</Link></div>
-        </div>
-        <div className="display">
-          <div className="item-div">
-            <div className="price"><div>3$</div></div>
-            <img src={dairyMilk} alt="" />
-            <div className="name"><div>Dairy Milk</div></div>
+          <div className="menu">
+            <div className="cafeteria">
+              <div>Cafeteria</div>
+            </div>
+            <div className="store">
+              <Link to="/store" className="link">
+                Store
+              </Link>
+            </div>
           </div>
-          <div className="item-div">
-            <div className="price"><div>2$</div></div>
-            <img src={reeses} alt="" />
-            <div className="name"><div>Reese's</div></div>
+          <div className="display">
+             {
+              cafeteria.length === 0 ? <Example/>
+              :
+            cafeteria &&
+              cafeteria.map((item, index) => (
+                <div className="item-div" key={index}>
+                  <div className="price">
+                    <div>{item.price}$</div>
+                  </div>
+                  <img src={item.image} alt="" />
+                  <div className="name">
+                    <div>{item.item}</div>
+                  </div>
+                </div>
+              ))}
           </div>
-          <div className="item-div">
-            <div className="price"><div>3$</div></div>
-            <img src={kitkat} alt="" />
-            <div className="name"><div>KitKat</div></div>
-          </div>
-          <div className="item-div">
-            <div className="price"><div>1$</div></div>
-            <img src={pepsi} alt="" />
-            <div className="name"><div>Pepsi</div></div>
-          </div>
-          <div className="item-div">
-            <div className="price"><div>10$</div></div>
-            <img src={prime} alt="" />
-            <div className="name"><div>Prime</div></div>
-          </div>
-          <div className="item-div">
-            <div className="price"><div>1$</div></div>
-            <img src={iceCream} alt="" />
-            <div className="name"><div>Ice cream</div></div>
-          </div>
-          <div className="item-div">
-            <div className="price"><div>3$</div></div>
-            <img src={pringles} alt="" />
-            <div className="name"><div>Pringles</div></div>
-          </div>
-          <div className="item-div">
-            <div className="price"><div>3$</div></div>
-            <img src={conesChips} alt="" />
-            <div className="name"><div>Cones Chips</div></div>
-          </div>
-          <div className="item-div">
-            <div className="price"><div>4$</div></div>
-            <img src={oreo} alt="" />
-            <div className="name"><div>Oreo</div></div>
-          </div>
-          <div className="item-div">
-            <div className="price"><div>4$</div></div>
-            <img src={kinder} alt="" />
-            <div className="name"><div>Kinder</div></div>
-          </div>
-          <div className="item-div">
-            <div className="price"><div>2$</div></div>
-            <img src={mnms} alt="" />
-            <div className="name"><div>m&m's</div></div>
-          </div>
-          <div className="item-div">
-            <div className="price"><div>3$</div></div>
-            <img src={marshmellow} alt="" />
-            <div className="name"><div>Marshmallow</div></div>
-          </div>
-        </div>
         </div>
       </main>
       <footer className="footer">

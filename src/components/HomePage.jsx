@@ -62,6 +62,12 @@ function HomePage() {
   const handleV3Pause = () => {
     setTennis(false);
   };
+
+  const token = localStorage.getItem("token");
+  const handlelogout = () => {
+    localStorage.removeItem("token");
+  };
+  
   return (
     <div className="body">
       <header className="header">
@@ -122,9 +128,15 @@ function HomePage() {
         </ul>
         <div className="reg-lan">
           <button className="reg-button">
-            <Link to="/connect" className="link">
-              Connect
-            </Link>
+            {!token ? (
+              <Link to="/connect" className="link">
+                Connect
+              </Link>
+            ) : (
+              <Link to="" className="link" onClick={handlelogout}>
+                Log out
+              </Link>
+            )}
           </button>
           <img
             className="language"
@@ -155,9 +167,15 @@ function HomePage() {
         <div className="phone-title">CHAMPIONS ARENA</div>
         <div className="phone-reg-lan">
           <button className="phone-reg-button">
-            <Link to="/connect" className="link">
-              Connect
-            </Link>
+          {!token ? (
+              <Link to="/connect" className="link">
+                Connect
+              </Link>
+            ) : (
+              <Link to="" className="link" onClick={handlelogout}>
+                Log out
+              </Link>
+            )}
           </button>
           <img
             className="phone-language"

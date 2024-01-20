@@ -1,5 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { useNagivate, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./footballPage.css";
 import "./basketballPage.css";
 import logo from "../images/champions-arena-logo.png";
@@ -8,12 +10,14 @@ import insta from "../images/icons8-insta-48.png";
 import facebook from "../images/icons8-facebook-48.png";
 import tiktok from "../images/icons8-tic-tac-50 (1).png";
 import twitter from "../images/icons8-twitterx-50.png";
-import court from "../images/basketcourt.jpg";
 import lebron from "../images/Rectangle94(2).png";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import { getTerrainsBySport } from "../redux/actions/terrain";
 
 function BasketballPage() {
+  const terrains = useSelector((state) => state.terrains);
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -47,6 +51,29 @@ function BasketballPage() {
     setIsOpen(!isOpen);
   };
 
+  useEffect(() => {
+    dispatch(getTerrainsBySport("basketball"));
+  }, [dispatch]);
+
+  var today = new Date();
+  var day2 = new Date(today);
+  day2.setDate(day2.getDate() + 1);
+  var day3 = new Date(today);
+  day3.setDate(day3.getDate() + 2);
+  var day4 = new Date(today);
+  day4.setDate(day4.getDate() + 3);
+  var day5 = new Date(today);
+  day5.setDate(day5.getDate() + 4);
+  today = today.toString().split(' ')[2];
+  day2 = day2.toString().split(' ')[2];
+  day3 = day3.toString().split(' ')[2];
+  day4 = day4.toString().split(' ')[2];
+  day5 = day5.toString().split(' ')[2];
+
+  const token = localStorage.getItem("token");
+  const handlelogout = () => {
+    localStorage.removeItem("token");
+  };
   return (
     <div className="body">
       <header className="header">
@@ -109,9 +136,15 @@ function BasketballPage() {
 
         <div className="reg-lan">
           <button className="reg-button">
-            <Link to="/connect" className="link">
-              {language === "english" ? "Connect" : "Relier"}
-            </Link>
+          {!token ? (
+              <Link to="/connect" className="link">
+                Connect
+              </Link>
+            ) : (
+              <Link to="" className="link" onClick={handlelogout}>
+                Log out
+              </Link>
+            )}
           </button>
           <img
             className="language"
@@ -143,7 +176,15 @@ function BasketballPage() {
         <div className="phone-title">CHAMPIONS ARENA</div>
         <div className="phone-reg-lan">
           <button className="phone-reg-button">
-            {language === "english" ? "Connect" : "Relier"}
+          {!token ? (
+              <Link to="/connect" className="link">
+                Connect
+              </Link>
+            ) : (
+              <Link to="" className="link" onClick={handlelogout}>
+                Log out
+              </Link>
+            )}
           </button>
           <img
             className="phone-language"
@@ -259,10 +300,10 @@ function BasketballPage() {
           <div className="stadiums-title">Our Court</div>
           <div className="stadiums-terrain">
             <div className="stadiums-terrain-single">
-              <img src={court} alt="grandTerrain" />
+              <img src={terrains && terrains[0].image} alt={terrains && terrains[0].name} />
               <div>
-                <div>Basket court</div>
-                <div className="dimensions">(50m - 25m)</div>
+                <div>{terrains && terrains[0].name}</div>
+                <div className="dimensions">({terrains && terrains[0].dimensions})</div>
               </div>
             </div>
           </div>
@@ -271,14 +312,14 @@ function BasketballPage() {
           <div className="booking">
             <div className="booking-schedule">SCHEDULE AND BOOKINGS</div>
             <div className="dropdown">
-              <button className="button">Basket court</button>
+              <button className="button">{terrains && terrains[0].name}</button>
             </div>
             <div className="calendar-days">
-              <div className="calendar-days-day">30</div>
-              <div className="calendar-days-day">31</div>
-              <div className="calendar-days-day">1</div>
-              <div className="calendar-days-day">2</div>
-              <div className="calendar-days-day">3</div>
+              <div className="calendar-days-day">{today}</div>
+              <div className="calendar-days-day">{day2}</div>
+              <div className="calendar-days-day">{day3}</div>
+              <div className="calendar-days-day">{day4}</div>
+              <div className="calendar-days-day">{day5}</div>
             </div>
             <div className="booking-expamles">
               <div className="booking-expamle">

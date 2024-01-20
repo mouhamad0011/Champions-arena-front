@@ -252,7 +252,29 @@
   cursor: pointer;
 }
 
-
+.booking-box{
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  background-color: #fff;
+}
+.booking-box .box-close{
+  position: absolute;
+  font-size: 40px;
+  color: black;
+  right: 5%;
+  top: 1%;
+}
+.booking-box .box-close:hover{
+  cursor: pointer;
+}
 
 
 @media screen and (min-width: 819px) and (max-width: 835px) {

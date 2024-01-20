@@ -14,12 +14,14 @@ import gift from "../images/gift-svgrepo-com (1).svg";
 import event from "../images/ftbevent.jpg";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { getAllEvents } from "../redux/actions/event";
 
 function Events() {
+  const dispatch = useDispatch();
+  const events = useSelector((state) => state.events);
   const [language, setLanguage] = useState("english");
-  const [football, setFootball] = useState(false);
-  const [basketball, setBasketball] = useState(false);
-  const [tennis, setTennis] = useState(false);
   const [SisHovering, setSIsHovering] = useState(false);
   const [LisHovering, setLIsHovering] = useState(false);
   const [burgerMenu, setBurgerMenu] = useState(false);
@@ -27,6 +29,9 @@ function Events() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  useEffect(() => {
+    dispatch(getAllEvents());
+  }, []);
 
   const handleToggle = () => {
     const bars = document.querySelector(".bars");
@@ -46,6 +51,11 @@ function Events() {
   };
   const handleLOutHover = () => {
     setLIsHovering(false);
+  };
+
+  const token = localStorage.getItem("token");
+  const handlelogout = () => {
+    localStorage.removeItem("token");
   };
 
   return (
@@ -110,9 +120,15 @@ function Events() {
 
         <div className="reg-lan">
           <button className="reg-button">
-            <Link to="/connect" className="link">
-              {language === "english" ? "Connect" : "Relier"}
-            </Link>
+            {!token ? (
+              <Link to="/connect" className="link">
+                Connect
+              </Link>
+            ) : (
+              <Link to="" className="link" onClick={handlelogout}>
+                Log out
+              </Link>
+            )}
           </button>
           <img
             className="language"
@@ -144,9 +160,15 @@ function Events() {
         <div className="phone-title">CHAMPIONS ARENA</div>
         <div className="phone-reg-lan">
           <button className="phone-reg-button">
-            <Link to="/connect" className="link">
-              Connect
-            </Link>
+            {!token ? (
+              <Link to="/connect" className="link">
+                Connect
+              </Link>
+            ) : (
+              <Link to="" className="link" onClick={handlelogout}>
+                Log out
+              </Link>
+            )}
           </button>
           <img
             className="phone-language"
@@ -259,50 +281,25 @@ function Events() {
         <div className="events">
           <div className="titlee">Upcoming events</div>
           <div className="full-hr"></div>
-          <div className="event">
-            <div className="date">
-              <div className="month">January</div>
-              <div className="day">05</div>
-            </div>
-            <img src={event} alt="" />
-            <div className="description">
-              <div className="title">Football cages</div>
-              <div className="text">
-                come with your friends on 05/01/2024 at 11 am and compete with
-                others to win valuable prizes
-              </div>
-            </div>
-          </div>
-          <div className="half-hr"></div>
-          <div className="event">
-            <div className="date">
-              <div className="month">January</div>
-              <div className="day">05</div>
-            </div>
-            <img src={event} alt="" />
-            <div className="description">
-              <div className="title">Football cages</div>
-              <div className="text">
-                come with your friends on 05/01/2024 at 11 am and compete with
-                others to win valuable prizes
-              </div>
-            </div>
-          </div>
-          <div className="half-hr"></div>
-          <div className="event">
-            <div className="date">
-              <div className="month">January</div>
-              <div className="day">05</div>
-            </div>
-            <img src={event} alt="" />
-            <div className="description">
-              <div className="title">Football cages</div>
-              <div className="text">
-                come with your friends on 05/01/2024 at 11 am and compete with
-                others to win valuable prizes
-              </div>
-            </div>
-          </div>
+          {events
+            ? events.map((event, index) => (
+                <>
+                  <div className="event">
+                    <div className="date">
+                      <div className="month">{event.date}</div>
+                      <div className="day">{event.price}$</div>
+                    </div>
+                    <img src={event.image} alt="" />
+                    <div className="description">
+                      <div className="title">{event.title}</div>
+                      <div className="text">{event.description}</div>
+                    </div>
+                  </div>
+                  {index < events.length - 1 && <div className="half-hr"></div>}
+                </>
+              ))
+            : "No upcoming events"}
+
           <div className="full-hr"></div>
         </div>
       </main>

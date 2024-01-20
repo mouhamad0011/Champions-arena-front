@@ -1,5 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { useNagivate, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./home.css";
 import "./cafeteria.css";
 import logo from "../images/champions-arena-logo.png";
@@ -10,20 +12,11 @@ import tiktok from "../images/icons8-tic-tac-50 (1).png";
 import twitter from "../images/icons8-twitterx-50.png";
 import ball from "../images/ball-removebg-preview.png";
 import ball2 from "../images/ball2-removebg-preview.png";
-import barcahoodie from "../images/barcahoodie-removebg-preview.png";
-import barcashirt from "../images/barcashirt-removebg-preview.png";
 import adebayor from "../images/adebayor-removebg-preview.png";
-import boots1 from "../images/boots1-removebg-preview.png";
-import drogba from "../images/drogba-removebg-preview.png";
-import hat1 from "../images/hat1-removebg-preview.png";
-import hat2 from "../images/hat2-removebg-preview.png";
-import hoodie1 from "../images/hoodie1-removebg-preview.png";
-import jacket1 from "../images/jacket1-removebg-preview.png";
-import jacket2 from "../images/jacket2-removebg-preview.png";
-import messi from "../images/messi-removebg-preview.png";
-import socks from "../images/socks-removebg-preview.png";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import { getAllStoreItems } from "../redux/actions/store";
+import Example from "../loading/Example";
 
 const style = {
   position: "absolute",
@@ -32,29 +25,44 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: "fit-content",
   height: "fit-content",
+  maxWidth: "90%",
   bgcolor: "background.paper",
   border: "none",
   boxShadow: 24,
   p: 4,
   display: "flex",
+  flexDirection: "column",
+  gap : "20px",
   alignItems: "center",
   justifyContent: "center",
 };
 
 function Store() {
+  const store = useSelector((state) => state.store);
+  const dispatch = useDispatch();
+  //const [isLoading, setIsLoading] = useState(true);
+
   const [language, setLanguage] = useState("english");
-  const [football, setFootball] = useState(false);
-  const [basketball, setBasketball] = useState(false);
-  const [tennis, setTennis] = useState(false);
   const [SisHovering, setSIsHovering] = useState(false);
   const [LisHovering, setLIsHovering] = useState(false);
   const [burgerMenu, setBurgerMenu] = useState(false);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [Popen, setPOpen] = useState(false);
-  const handlePOpen = () => setPOpen(true);
-  const handlePClose = () => setPOpen(false);
+  const [modalStates, setModalStates] = useState(
+    Array(store.length).fill(false)
+  );
+  const handlePOpen = (index) => {
+    const newModalStates = [...modalStates];
+    newModalStates[index] = true;
+    setModalStates(newModalStates);
+  };
+
+  const handlePClose = (index) => {
+    const newModalStates = [...modalStates];
+    newModalStates[index] = false;
+    setModalStates(newModalStates);
+  };
   const handleToggle = () => {
     const bars = document.querySelector(".bars");
     bars.classList.toggle("active");
@@ -73,6 +81,18 @@ function Store() {
   };
   const handleLOutHover = () => {
     setLIsHovering(false);
+  };
+
+  useEffect(() => {
+    // setTimeout(() => {
+    //   setIsLoading(false);
+    // }, 4000);
+    dispatch(getAllStoreItems());
+  }, []);
+
+  const token = localStorage.getItem("token");
+  const handlelogout = () => {
+    localStorage.removeItem("token");
   };
 
   return (
@@ -135,9 +155,15 @@ function Store() {
         </ul>
         <div className="reg-lan">
           <button className="reg-button">
-            <Link to="/connect" className="link">
-              {language === "english" ? "Connect" : "Relier"}
-            </Link>
+            {!token ? (
+              <Link to="/connect" className="link">
+                Connect
+              </Link>
+            ) : (
+              <Link to="" className="link" onClick={handlelogout}>
+                Log out
+              </Link>
+            )}
           </button>
           <img
             className="language"
@@ -168,9 +194,15 @@ function Store() {
         <div className="phone-title">CHAMPIONS ARENA</div>
         <div className="phone-reg-lan">
           <button className="phone-reg-button">
-            <Link to="/connect" className="link">
-              {language === "english" ? "Connect" : "Relier"}
-            </Link>
+          {!token ? (
+              <Link to="/connect" className="link">
+                Connect
+              </Link>
+            ) : (
+              <Link to="" className="link" onClick={handlelogout}>
+                Log out
+              </Link>
+            )}
           </button>
           <img
             className="phone-language"
@@ -275,132 +307,53 @@ function Store() {
         <div className="cafeteria-store">
           <div className="menu">
             <div className="cafeteria2">
-              <Link to="/cafeteria" className="link">Cafeteria</Link>
+              <Link to="/cafeteria" className="link">
+                Cafeteria
+              </Link>
             </div>
             <div className="store2">
               <div>Store</div>
             </div>
           </div>
           <div className="display">
-            <div className="item-div">
-              <div className="price">
-                <div>20$</div>
-              </div>
-              <img src={hoodie1} alt="" onClick={handlePOpen} />
-              <div className="name">
-                <div>Sport hoodie</div>
-              </div>
-            </div>
-            <Modal
-              open={Popen}
-              onClose={handlePClose}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            >
-              <Box sx={style}>
-                <span onClick={handlePClose} className="box-close">&#x2715;</span>
-                <img src={hoodie1} alt="" />
-              </Box>
-            </Modal>
-            <div className="item-div">
-              <div className="price">
-                <div>25$</div>
-              </div>
-              <img src={barcashirt} alt="" onClick={handleOpen}/>
-              <div className="name">
-                <div>Barca shirt</div>
-              </div>
-            </div>
-            <div className="item-div">
-              <div className="price">
-                <div>20$</div>
-              </div>
-              <img src={barcahoodie} alt="" onClick={handleOpen}/>
-              <div className="name">
-                <div>Barca hoodie</div>
-              </div>
-            </div>
-            <div className="item-div">
-              <div className="price">
-                <div>40$</div>
-              </div>
-              <img src={boots1} alt="" onClick={handleOpen}/>
-              <div className="name">
-                <div>Boots</div>
-              </div>
-            </div>
-            <div className="item-div">
-              <div className="price">
-                <div>5$</div>
-              </div>
-              <img src={socks} alt="" onClick={handleOpen}/>
-              <div className="name">
-                <div>Socks</div>
-              </div>
-            </div>
-            <div className="item-div">
-              <div className="price">
-                <div>20$</div>
-              </div>
-              <img src={jacket1} alt="" onClick={handleOpen}/>
-              <div className="name">
-                <div>Sport jacket</div>
-              </div>
-            </div>
-            <div className="item-div">
-              <div className="price">
-                <div>20$</div>
-              </div>
-              <img src={jacket2} alt="" onClick={handleOpen}/>
-              <div className="name">
-                <div>Sport jacket</div>
-              </div>
-            </div>
-            <div className="item-div">
-              <div className="price">
-                <div>25$</div>
-              </div>
-              <img src={drogba} alt="" onClick={handleOpen}/>
-              <div className="name">
-                <div>Drogba shirt</div>
-              </div>
-            </div>
-            <div className="item-div">
-              <div className="price">
-                <div>30$</div>
-              </div>
-              <img src={messi} alt="" onClick={handleOpen}/>
-              <div className="name">
-                <div>Messi shirt</div>
-              </div>
-            </div>
-            <div className="item-div">
-              <div className="price">
-                <div>30$</div>
-              </div>
-              <img src={adebayor} alt="" onClick={handleOpen}/>
-              <div className="name">
-                <div>Adebayor shirt</div>
-              </div>
-            </div>
-            <div className="item-div">
-              <div className="price">
-                <div>5$</div>
-              </div>
-              <img src={hat1} alt="" onClick={handleOpen}/>
-              <div className="name">
-                <div>England hat</div>
-              </div>
-            </div>
-            <div className="item-div">
-              <div className="price">
-                <div>3$</div>
-              </div>
-              <img src={hat2} alt="" onClick={handleOpen}/>
-              <div className="name">
-                <div>Liverpool cap</div>
-              </div>
-            </div>
+            {
+              store.length === 0 ? <Example/>
+              :
+              store &&
+              store.map((item, index) => (
+                <div className="item-div" key={index}>
+                  <div className="price">
+                    <div>{item.price}$</div>
+                  </div>
+                  <img
+                    src={item.image}
+                    alt=""
+                    onClick={() => handlePOpen(index)}
+                  />
+                  <div className="name">
+                    <div>{item.item}</div>
+                  </div>
+                  <Modal
+                    open={modalStates[index]}
+                    onClose={() => handlePClose(index)}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <Box sx={style}>
+                      <span
+                        onClick={() => handlePClose(index)}
+                        className="box-close"
+                      >
+                        &#x2715;
+                      </span>
+                      {item.info && <div className="info">{item.info}</div>}
+                      <img src={item.image} alt="" />
+                    </Box>
+                  </Modal>
+                </div>
+              ))
+            }
+           
           </div>
         </div>
       </main>
