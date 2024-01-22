@@ -17,6 +17,24 @@ export const getAllBookings = () => {
   };
 };
 
+export const getBookingsByDateAndName = (terrainId, date) => {
+  return (dispatch) => {
+    axios
+      .post(`${process.env.REACT_APP_BACKEND}/bookings/getBookingsByDateAndName`, {terrainId, date})
+      .then((response) => {
+        const bookings = response.data.bookings;
+        console.log(response)
+        dispatch({
+          type: "getBookingsByDateAndName",
+          payload: bookings
+        });
+      })
+      .catch((error) => {
+        console.error("Error while getting bookings:", error);
+      });
+  };
+};
+
 export const addBookingByAdmin = (firstName, lastName, email, terrainId, date, time, duration, bill) => {
     const newBooking = {
         firstName, lastName, email, terrainId, date, time, duration, bill

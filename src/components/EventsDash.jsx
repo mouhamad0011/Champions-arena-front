@@ -1,5 +1,6 @@
 import { useMemo, useEffect, useState } from "react";
 import "./home.css";
+import Popup from "./Popup";
 import {
   MRT_EditActionButtons,
   MaterialReactTable,
@@ -40,6 +41,7 @@ import {
 } from "@mui/material";
 
 const EventsDash = () => {
+  const [openDeleteConfirmModal, setOpenDeleteConfirmModal] = useState(null);
   const events = useSelector((state) => state.events);
   const terrains = useSelector((state) => state.terrains);
   const bookings = useSelector((state) => state.bookings);
@@ -184,10 +186,9 @@ const EventsDash = () => {
     table.setEditingRow(null); //exit editing mode
   };
 
-  const openDeleteConfirmModal = (row) => {
-    if (window.confirm("Are you sure you want to delete this item?")) {
-      dispatch(deleteEvent(row.original._id));
-    }
+  const handleDelete = async (id) => {
+    dispatch(deleteEvent(id));
+    setOpenDeleteConfirmModal(null);
   };
 
   const table = useMaterialReactTable({
@@ -380,13 +381,29 @@ const EventsDash = () => {
           </IconButton>
         </Tooltip>
         <Tooltip title="Delete">
-          <IconButton color="error" onClick={() => openDeleteConfirmModal(row)}>
+          <IconButton color="error" onClick={() => setOpenDeleteConfirmModal(row)}>
             <DeleteIcon />
           </IconButton>
         </Tooltip>
       </Box>
     ),
   });
+  if (openDeleteConfirmModal !== null) {
+    return(
+    <div>
+      <MaterialReactTable table={table} />
+      <Popup
+        title="Are you sure you want to delete this event?"
+        cancelLabel="Cancel"
+        confirmLabel="Delete"
+        onReject={() => {
+          setOpenDeleteConfirmModal(null);
+        }}
+        onAccept={() => handleDelete(openDeleteConfirmModal.original._id)}
+      />
+    </div>
+    );
+  }
   if (events.length === 0 || loading) {
     return (
       <div

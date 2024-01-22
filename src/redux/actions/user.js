@@ -104,13 +104,13 @@ export const login = (email, password) => {
     firstName,
     lastName,
     email,
-    password,
+    role
   ) => {
     const newUser = {
       firstName,
       lastName,
       email,
-      password,
+      role
     };
     return (dispatch) => {
       axios
@@ -128,4 +128,31 @@ export const login = (email, password) => {
     };
   };
   
- 
+  export const updateProfile = (
+    Id,
+    firstName,
+    lastName,
+    email,
+    password
+  ) => {
+    const newUser = {
+      firstName,
+      lastName,
+      email,
+      password
+    };
+    return (dispatch) => {
+      axios
+        .put(`${process.env.REACT_APP_BACKEND}/users/updateProfile/${Id}`, newUser)
+        .then((response) => {
+          const user = response.data.user;
+          dispatch({
+            type: "updateProfile",
+            payload: user,
+          });
+        })
+        .catch((error) => {
+          console.error("Error while updating user:", error);
+        });
+    };
+  };

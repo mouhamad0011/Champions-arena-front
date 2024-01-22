@@ -454,6 +454,16 @@ video {
   align-items: center;
   justify-content: center;
 }
+.box-close{
+  position: absolute;
+  font-size: 25px;
+  color: black;
+  right: 5%;
+  top: 1%;
+}
+.box-close:hover{
+  cursor: pointer;
+}
 
 @media screen and (min-width: 576px) and (max-width: 1010px) {
   .header {

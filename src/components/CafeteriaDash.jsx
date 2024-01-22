@@ -1,5 +1,6 @@
 import { useMemo, useEffect, useState } from "react";
-import "./home.css"
+import "./home.css";
+import Popup from "./Popup";
 import {
   MRT_EditActionButtons,
   MaterialReactTable,
@@ -32,6 +33,7 @@ import {
 } from "@mui/material";
 
 const CafeteriaDash = () => {
+  const [openDeleteConfirmModal, setOpenDeleteConfirmModal] = useState(null);
   const cafeteria = useSelector((state) => state.cafeteria);
   const dispatch = useDispatch();
   const [item, setItem] = useState("");
@@ -105,10 +107,9 @@ const CafeteriaDash = () => {
      table.setEditingRow(null); //exit editing mode
   };
 
-  const openDeleteConfirmModal = (row) => {
-    if (window.confirm("Are you sure you want to delete this item?")) {
-      dispatch(deleteItemFromCafeteria(row.original._id));
-    }
+  const handleDelete = async (id) => {
+    dispatch(deleteItemFromCafeteria(id));
+    setOpenDeleteConfirmModal(null);
   };
 
   const table = useMaterialReactTable({
@@ -207,13 +208,29 @@ const CafeteriaDash = () => {
           </IconButton>
         </Tooltip>
         <Tooltip title="Delete">
-          <IconButton color="error" onClick={() => openDeleteConfirmModal(row)}>
+          <IconButton color="error" onClick={() => setOpenDeleteConfirmModal(row)}>
             <DeleteIcon />
           </IconButton>
         </Tooltip>
       </Box>
     ),
   });
+  if (openDeleteConfirmModal !== null) {
+    return(
+    <div>
+      <MaterialReactTable table={table} />
+      <Popup
+        title="Are you sure you want to delete this item?"
+        cancelLabel="Cancel"
+        confirmLabel="Delete"
+        onReject={() => {
+          setOpenDeleteConfirmModal(null);
+        }}
+        onAccept={() => handleDelete(openDeleteConfirmModal.original._id)}
+      />
+    </div>
+    );
+  }
   if (cafeteria.length === 0 || loading) {
     return (
       <div

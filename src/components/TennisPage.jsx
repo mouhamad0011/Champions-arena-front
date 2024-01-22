@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { useNagivate, Link } from "react-router-dom";
+import { useNagivate, Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import "./footballPage.css";
@@ -14,8 +14,12 @@ import lebron from "../images/tenniscut.png";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { getTerrainsBySport } from "../redux/actions/terrain";
+import { getBookingsByDateAndName } from "../redux/actions/booking";
+import {getUserRole} from "../UserInfo/GetUserInfo";
 
 function TennisPage() {
+  const role = getUserRole();
+  const bookings = useSelector((state) => state.bookings);
   const terrains = useSelector((state) => state.terrains);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -51,15 +55,8 @@ function TennisPage() {
     setIsOpen(!isOpen);
   };
  
-  useEffect(() => {
-    dispatch(getTerrainsBySport("tennis"))
-  }, [dispatch]);
-
-  setTimeout(() => {
-    console.log(terrains)
-  }, 5000);
-
   var today = new Date();
+
   var day2 = new Date(today);
   day2.setDate(day2.getDate() + 1);
   var day3 = new Date(today);
@@ -68,16 +65,44 @@ function TennisPage() {
   day4.setDate(day4.getDate() + 3);
   var day5 = new Date(today);
   day5.setDate(day5.getDate() + 4);
-  today = today.toString().split(' ')[2];
-  day2 = day2.toString().split(' ')[2];
-  day3 = day3.toString().split(' ')[2];
-  day4 = day4.toString().split(' ')[2];
-  day5 = day5.toString().split(' ')[2];
-
+  today = today.toString().split(" ")[2];
+  day2 = day2.toString().split(" ")[2];
+  day3 = day3.toString().split(" ")[2];
+  day4 = day4.toString().split(" ")[2];
+  day5 = day5.toString().split(" ")[2];
+  const firstDay = new Date();
+  var secondDay = new Date(firstDay);
+  secondDay.setDate(secondDay.getDate() + 1);
+  var thirdDay = new Date(firstDay);
+  thirdDay.setDate(thirdDay.getDate() + 2);
+  var fourthDay = new Date(firstDay);
+  fourthDay.setDate(fourthDay.getDate() + 3);
+  var fifthDay = new Date(firstDay);
+  fifthDay.setDate(fifthDay.getDate() + 4);
+  const navigate = useNavigate()
   const token = localStorage.getItem("token");
   const handlelogout = () => {
     localStorage.removeItem("token");
+    navigate("/login")
   };
+
+  const [date, setDate] = useState(
+    firstDay.toLocaleDateString("en-GB").split("/")[0] +
+      "-" +
+      firstDay.toLocaleDateString("en-GB").split("/")[1] +
+      "-" +
+      firstDay.toLocaleDateString("en-GB").split("/")[2]
+  );
+
+  useEffect(() => {
+    dispatch(getTerrainsBySport("tennis"));
+    dispatch(getBookingsByDateAndName("65a2817ac29070d467610732", date));
+  }, [date]);
+
+  setTimeout(() => {
+    console.log(bookings);
+  }, 6000);
+
 
   return (
     <div className="body">
@@ -140,7 +165,7 @@ function TennisPage() {
         </ul>
 
         <div className="reg-lan">
-          <button className="reg-button">
+        <button className="reg-button">
             {!token ? (
               <Link to="/connect" className="link">
                 Connect
@@ -151,7 +176,23 @@ function TennisPage() {
               </Link>
             )}
           </button>
-          <img
+          {token && (
+            <Link to={role === "admin" ? "/admin" : "user"}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 50 50"
+              fill="none"
+            >
+              <path
+                d="M0 0V14.5H14.5V0H0ZM17.625 0V14.5H32.125V0H17.625ZM35.25 0V14.5H50V0H35.25ZM0 17.625V32.125H14.5V17.625H0ZM17.625 17.625V32.125H32.125V17.625H17.625ZM35.25 17.625V32.125H50V17.625H35.25ZM0 35.25V50H14.5V35.25H0ZM17.625 35.25V50H32.125V35.25H17.625ZM35.25 35.25V50H50V35.25H35.25Z"
+                fill="white"
+              />
+            </svg>
+            </Link>
+          )}
+          {/* <img
             className="language"
             src={languagee}
             alt="language"
@@ -170,7 +211,7 @@ function TennisPage() {
                 {language === "english" ? "French" : "Francais"}
               </div>
             </div>
-          )}
+          )} */}
         </div>
       </header>
 
@@ -180,8 +221,8 @@ function TennisPage() {
         </Link>
         <div className="phone-title">CHAMPIONS ARENA</div>
         <div className="phone-reg-lan">
-          <button className="phone-reg-button">
-          {!token ? (
+        <button className="phone-reg-button">
+            {!token ? (
               <Link to="/connect" className="link">
                 Connect
               </Link>
@@ -191,7 +232,23 @@ function TennisPage() {
               </Link>
             )}
           </button>
-          <img
+          {token && (
+            <Link to={role === "admin" ? "/admin" : "user"}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="27"
+              height="27"
+              viewBox="0 0 50 50"
+              fill="none"
+            >
+              <path
+                d="M0 0V14.5H14.5V0H0ZM17.625 0V14.5H32.125V0H17.625ZM35.25 0V14.5H50V0H35.25ZM0 17.625V32.125H14.5V17.625H0ZM17.625 17.625V32.125H32.125V17.625H17.625ZM35.25 17.625V32.125H50V17.625H35.25ZM0 35.25V50H14.5V35.25H0ZM17.625 35.25V50H32.125V35.25H17.625ZM35.25 35.25V50H50V35.25H35.25Z"
+                fill="white"
+              />
+            </svg>
+            </Link>
+          )}
+          {/* <img
             className="phone-language"
             src={languagee}
             alt="language"
@@ -210,7 +267,7 @@ function TennisPage() {
                 {language === "english" ? "French" : "Francais"}
               </div>
             </div>
-          )}
+          )} */}
         </div>
         <div className="trigger" onClick={handleMenu}>
           <svg className="bars" viewBox="0 0 100 100" onClick={handleToggle}>
@@ -304,10 +361,10 @@ function TennisPage() {
           <div className="stadiums-title">Our Court</div>
           <div className="stadiums-terrain">
             <div className="stadiums-terrain-single">
-              <img src={terrains && terrains[0].image} alt={terrains && terrains[0].name} />
+              <img src={terrains && terrains[0]?.image} alt={terrains && terrains[0]?.name} />
               <div>
-                <div>{terrains && terrains[0].name}</div>
-                <div className="dimensions">({terrains && terrains[0].dimensions})</div>
+                <div>{terrains && terrains[0]?.name}</div>
+                <div className="dimensions">({terrains && terrains[0]?.dimensions})</div>
               </div>
             </div>
           </div>
@@ -319,77 +376,146 @@ function TennisPage() {
               <button className="button">Tennis court</button>
             </div>
             <div className="calendar-days">
-              <div className="calendar-days-day">30</div>
-              <div className="calendar-days-day">31</div>
-              <div className="calendar-days-day">1</div>
-              <div className="calendar-days-day">2</div>
-              <div className="calendar-days-day">3</div>
+            <div
+                className="calendar-days-day"
+                onClick={() => {
+                  setDate(
+                    firstDay.toLocaleDateString("en-GB").split("/")[0] +
+                      "-" +
+                      firstDay.toLocaleDateString("en-GB").split("/")[1] +
+                      "-" +
+                      firstDay.toLocaleDateString("en-GB").split("/")[2]
+                  );
+                }}
+              >
+                {today}
+              </div>
+              <div
+                className="calendar-days-day"
+                onClick={() => {
+                  setDate(
+                    secondDay.toLocaleDateString("en-GB").split("/")[0] +
+                      "-" +
+                      secondDay.toLocaleDateString("en-GB").split("/")[1] +
+                      "-" +
+                      secondDay.toLocaleDateString("en-GB").split("/")[2]
+                  );
+                }}
+              >
+                {day2}
+              </div>
+              <div
+                className="calendar-days-day"
+                onClick={() => {
+                  setDate(
+                    thirdDay.toLocaleDateString("en-GB").split("/")[0] +
+                      "-" +
+                      thirdDay.toLocaleDateString("en-GB").split("/")[1] +
+                      "-" +
+                      thirdDay.toLocaleDateString("en-GB").split("/")[2]
+                  );
+                }}
+              >
+                {day3}
+              </div>
+              <div
+                className="calendar-days-day"
+                onClick={() => {
+                  setDate(
+                    fourthDay.toLocaleDateString("en-GB").split("/")[0] +
+                      "-" +
+                      fourthDay.toLocaleDateString("en-GB").split("/")[1] +
+                      "-" +
+                      fourthDay.toLocaleDateString("en-GB").split("/")[2]
+                  );
+                }}
+              >
+                {day4}
+              </div>
+              <div
+                className="calendar-days-day"
+                onClick={() => {
+                  setDate(
+                    fifthDay.toLocaleDateString("en-GB").split("/")[0] +
+                      "-" +
+                      fifthDay.toLocaleDateString("en-GB").split("/")[1] +
+                      "-" +
+                      fifthDay.toLocaleDateString("en-GB").split("/")[2]
+                  );
+                }}
+              >
+                {day5}
+              </div>
             </div>
             <div className="booking-expamles">
-              <div className="booking-expamle">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="64"
-                  height="63"
-                  viewBox="0 0 64 63"
-                  fill="none"
-                >
-                  <path
-                    d="M32 0C14.356 0 0 13.9105 0 31.0071C0 48.1036 14.356 62.0141 32 62.0141C49.644 62.0141 64 48.1036 64 31.0071C64 13.9105 49.644 0 32 0ZM32 60.0762C15.458 60.0762 2 47.0358 2 31.0071C2 14.9783 15.458 1.93794 32 1.93794C48.542 1.93794 62 14.9783 62 31.0071C62 47.0358 48.542 60.0762 32 60.0762Z"
-                    fill="#006A4A"
-                  />
-                  <path
-                    d="M45.2682 19.6993L28.1762 37.5478C27.7962 37.9509 27.0922 37.947 26.7122 37.5478L18.7342 29.2166C18.3562 28.8232 17.7202 28.7999 17.3202 29.1662C16.9142 29.5305 16.8902 30.1429 17.2682 30.5344L25.2442 38.8656C25.8102 39.4586 26.6142 39.7958 27.4462 39.7958C28.2762 39.7958 29.0782 39.4566 29.6442 38.8656L46.7342 21.0171C47.1102 20.6257 47.0882 20.0114 46.6822 19.649C46.2802 19.2846 45.6442 19.304 45.2682 19.6993Z"
-                    fill="#006A4A"
-                  />
-                </svg>
-                <div>7 pm - 8 pm</div>
-                <div>Mouhamad</div>
-              </div>
-              <div className="booking-expamle">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="64"
-                  height="63"
-                  viewBox="0 0 64 63"
-                  fill="none"
-                >
-                  <path
-                    d="M32 0C14.356 0 0 13.9105 0 31.0071C0 48.1036 14.356 62.0141 32 62.0141C49.644 62.0141 64 48.1036 64 31.0071C64 13.9105 49.644 0 32 0ZM32 60.0762C15.458 60.0762 2 47.0358 2 31.0071C2 14.9783 15.458 1.93794 32 1.93794C48.542 1.93794 62 14.9783 62 31.0071C62 47.0358 48.542 60.0762 32 60.0762Z"
-                    fill="#006A4A"
-                  />
-                  <path
-                    d="M45.2682 19.6993L28.1762 37.5478C27.7962 37.9509 27.0922 37.947 26.7122 37.5478L18.7342 29.2166C18.3562 28.8232 17.7202 28.7999 17.3202 29.1662C16.9142 29.5305 16.8902 30.1429 17.2682 30.5344L25.2442 38.8656C25.8102 39.4586 26.6142 39.7958 27.4462 39.7958C28.2762 39.7958 29.0782 39.4566 29.6442 38.8656L46.7342 21.0171C47.1102 20.6257 47.0882 20.0114 46.6822 19.649C46.2802 19.2846 45.6442 19.304 45.2682 19.6993Z"
-                    fill="#006A4A"
-                  />
-                </svg>
-                <div>7 pm - 8 pm</div>
-                <div>Mouhamad</div>
-              </div>
-              <div className="booking-expamle">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="64"
-                  height="63"
-                  viewBox="0 0 64 63"
-                  fill="none"
-                >
-                  <path
-                    d="M32 0C14.356 0 0 13.9105 0 31.0071C0 48.1036 14.356 62.0141 32 62.0141C49.644 62.0141 64 48.1036 64 31.0071C64 13.9105 49.644 0 32 0ZM32 60.0762C15.458 60.0762 2 47.0358 2 31.0071C2 14.9783 15.458 1.93794 32 1.93794C48.542 1.93794 62 14.9783 62 31.0071C62 47.0358 48.542 60.0762 32 60.0762Z"
-                    fill="#006A4A"
-                  />
-                  <path
-                    d="M45.2682 19.6993L28.1762 37.5478C27.7962 37.9509 27.0922 37.947 26.7122 37.5478L18.7342 29.2166C18.3562 28.8232 17.7202 28.7999 17.3202 29.1662C16.9142 29.5305 16.8902 30.1429 17.2682 30.5344L25.2442 38.8656C25.8102 39.4586 26.6142 39.7958 27.4462 39.7958C28.2762 39.7958 29.0782 39.4566 29.6442 38.8656L46.7342 21.0171C47.1102 20.6257 47.0882 20.0114 46.6822 19.649C46.2802 19.2846 45.6442 19.304 45.2682 19.6993Z"
-                    fill="#006A4A"
-                  />
-                </svg>
-                <div>7 pm - 8 pm</div>
-                <div>Mouhamad</div>
-              </div>
+              {bookings &&
+                bookings.map(
+                  (booking, index) =>
+                    index <= 2 && (
+                      <div className="booking-expamle" key={index}>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="64"
+                          height="63"
+                          viewBox="0 0 64 63"
+                          fill="none"
+                        >
+                          <path
+                            d="M32 0C14.356 0 0 13.9105 0 31.0071C0 48.1036 14.356 62.0141 32 62.0141C49.644 62.0141 64 48.1036 64 31.0071C64 13.9105 49.644 0 32 0ZM32 60.0762C15.458 60.0762 2 47.0358 2 31.0071C2 14.9783 15.458 1.93794 32 1.93794C48.542 1.93794 62 14.9783 62 31.0071C62 47.0358 48.542 60.0762 32 60.0762Z"
+                            fill="#006A4A"
+                          />
+                          <path
+                            d="M45.2682 19.6993L28.1762 37.5478C27.7962 37.9509 27.0922 37.947 26.7122 37.5478L18.7342 29.2166C18.3562 28.8232 17.7202 28.7999 17.3202 29.1662C16.9142 29.5305 16.8902 30.1429 17.2682 30.5344L25.2442 38.8656C25.8102 39.4586 26.6142 39.7958 27.4462 39.7958C28.2762 39.7958 29.0782 39.4566 29.6442 38.8656L46.7342 21.0171C47.1102 20.6257 47.0882 20.0114 46.6822 19.649C46.2802 19.2846 45.6442 19.304 45.2682 19.6993Z"
+                            fill="#006A4A"
+                          />
+                        </svg>
+                        <div className="booking-expamle-time">
+                          {booking.time}
+                        </div>
+                        <div>
+                          {booking.userId
+                            ? booking.userId.firstName
+                            : booking.firstName}
+                        </div>
+                      </div>
+                    )
+                )}
+                {bookings.length === 2 && (
+                <>
+                  <div className="booking-expamle">
+                    <div>No more bookings for today</div>
+                  </div>
+                </>
+              )}
+              {bookings.length === 1 && (
+                <>
+                  <div className="booking-expamle">
+                    <div>No more bookings for today</div>
+                  </div>
+                  <div className="booking-expamle">
+                    <div>No more bookings for today</div>
+                  </div>
+                </>
+              )}
+              {bookings.length === 0 && (
+                <>
+                  <div className="booking-expamle">
+                    <div>No bookings for this day</div>
+                  </div>
+                  <div className="booking-expamle">
+                    <div>No bookings for this day</div>
+                  </div>
+                  <div className="booking-expamle">
+                    <div>No bookings for this day</div>
+                  </div>
+                </>
+              )}
             </div>
             <div className="booking-last">
               <div>If you haven’t played yet in our court, you’re losing.</div>
-              <button>BOOK AND PLAY</button>
+              <Link className="link" to="/user">
+                <button>BOOK AND PLAY</button>
+              </Link>
             </div>
           </div>
           <img src={lebron} alt="messi" />

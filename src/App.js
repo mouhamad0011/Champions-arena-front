@@ -17,6 +17,7 @@ import UserDash from "./components/UserDash";
 
 function App() {
   const role = getUserRole();
+  console.log(role);
   return (
     <BrowserRouter>
       <Toaster toastOptions={{ duration: 5000 }} />
@@ -32,9 +33,10 @@ function App() {
         <Route path="/cafeteria" element={<Cafeteria />} />
         <Route path="/store" element={<Store />} />
         <Route path="/about" element={<About />} />
+        {/* <Route path="/admin" element={ role === "admin" ? <AdminDash /> : <HomePage/> } />
+        <Route path="/user" element={role === "user" ? <UserDash /> : <HomePage/>} /> */}
         <Route path="/admin" element={<AdminDash />} />
         <Route path="/user" element={<UserDash />} />
-
       </Routes>
     </BrowserRouter>
   );

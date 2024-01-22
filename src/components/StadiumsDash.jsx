@@ -1,5 +1,6 @@
 import { useMemo, useEffect, useState } from "react";
-import "./home.css"
+import "./home.css";
+import Popup from "./Popup";
 import {
   MRT_EditActionButtons,
   MaterialReactTable,
@@ -32,6 +33,7 @@ import {
 } from "@mui/material";
 
 const StadiumsDash = () => {
+  const [openDeleteConfirmModal, setOpenDeleteConfirmModal] = useState(null);
   const terrains = useSelector((state) => state.terrains);
   const dispatch = useDispatch();
   const [name, setName] = useState("");
@@ -134,12 +136,11 @@ const StadiumsDash = () => {
     table.setEditingRow(null); //exit editing mode
   };
 
-  const openDeleteConfirmModal = (row) => {
-    if (window.confirm("Are you sure you want to delete this stad?")) {
-      dispatch(deleteTerrain(row.original._id));
-    }
-  };
 
+  const handleDelete = async (id) => {
+    dispatch(deleteTerrain(id));
+    setOpenDeleteConfirmModal(null);
+  };
   const table = useMaterialReactTable({
     initialState: { columnVisibility: { _id: false } },
     columns,
@@ -278,13 +279,29 @@ const StadiumsDash = () => {
           </IconButton>
         </Tooltip>
         <Tooltip title="Delete">
-          <IconButton color="error" onClick={() => openDeleteConfirmModal(row)}>
+          <IconButton color="error" onClick={() => setOpenDeleteConfirmModal(row)}>
             <DeleteIcon />
           </IconButton>
         </Tooltip>
       </Box>
     ),
   });
+  if (openDeleteConfirmModal !== null) {
+    return(
+    <div>
+      <MaterialReactTable table={table} />
+      <Popup
+        title="Are you sure you want to delete this stadium?"
+        cancelLabel="Cancel"
+        confirmLabel="Delete"
+        onReject={() => {
+          setOpenDeleteConfirmModal(null);
+        }}
+        onAccept={() => handleDelete(openDeleteConfirmModal.original._id)}
+      />
+    </div>
+    );
+  }
   if (terrains.length === 0 || loading) {
     return (
       <div

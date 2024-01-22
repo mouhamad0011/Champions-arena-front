@@ -8,7 +8,7 @@ import CafeteriaDash from "./CafeteriaDash";
 import EventsDash from "./EventsDash";
 import StadiumsDash from "./StadiumsDash";
 import BookingsDash from "./BookingsDash";
-import RevenueDash from "./RevenueDash";
+import StatisticsDash from "./StatisticsDash";
 
 const AdminDash = () => {
     const [dash, setDash] = useState("users");
@@ -44,8 +44,8 @@ const AdminDash = () => {
           <li style={{ color: "white" }} onClick={()=> setDash("cafeteria")}>Cafeteria</li>
           <li style={{ color: "white" }} onClick={()=> setDash("bookings")}>Bookings</li>
           <li style={{ color: "white" }} onClick={()=> setDash("events")}>Events</li>
+          <li style={{ color: "white" }} onClick={()=> setDash("statistics")}>Analytics</li>
         </ul>
-
         <div className="reg-lan">
           <button className="reg-button">
             {!token ? (
@@ -57,9 +57,6 @@ const AdminDash = () => {
                 Log out
               </Link>
             )}
-          </button>
-          <button className="reg-button" onClick={()=> setDash("revenue")}>
-            Revenue
           </button>
         </div>
       </header>
@@ -80,9 +77,6 @@ const AdminDash = () => {
               </Link>
             )}
           </button>
-          <button className="phone-reg-button">
-            Revenue
-          </button>
         </div>
         <div className="trigger" onClick={handleMenu}>
           <svg className="bars" viewBox="0 0 100 100" onClick={handleToggle}>
@@ -102,12 +96,14 @@ const AdminDash = () => {
         </div>
         {burgerMenu && (
           <ul className="phone-menu" style={{zIndex:"10"}}>
-            <li style={{ color: "white" }}>Users</li>
-            <li style={{ color: "white" }}>Stadiums</li>
-            <li style={{ color: "white" }}>Store</li>
-            <li style={{ color: "white" }}>Cafeteria</li>
-            <li style={{ color: "white" }}>Bookings</li>
-            <li style={{ color: "white" }}>Events</li>
+            <li style={{ color: "white" }} onClick={()=> setDash("users")}>Users</li>
+            <li style={{ color: "white" }} onClick={()=> setDash("stadiums")}>Stadiums</li>
+            <li style={{ color: "white" }} onClick={()=> setDash("store")}>Store</li>
+            <li style={{ color: "white" }} onClick={()=> setDash("cafeteria")}>Cafeteria</li>
+            <li style={{ color: "white" }} onClick={()=> setDash("bookings")}>Bookings</li>
+            <li style={{ color: "white" }} onClick={()=> setDash("events")}>Events</li>
+            <li style={{ color: "white" }} onClick={()=> setDash("statistics")}>Analytics</li>
+          
           </ul>
         )}
       </header>
@@ -118,7 +114,7 @@ const AdminDash = () => {
       {dash === "events" && <EventsDash/>}
       {dash === "stadiums" && <StadiumsDash/>}
       {dash === "bookings" && <BookingsDash/>}
-      {dash === "revenue" && <RevenueDash/>}
+      {dash === "statistics" && <StatisticsDash/>}
 
         </>
     );

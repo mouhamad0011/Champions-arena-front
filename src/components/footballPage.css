@@ -276,7 +276,9 @@
   cursor: pointer;
 }
 
-
+.booking-expamle-time{
+  width: 85px;
+}
 @media screen and (min-width: 819px) and (max-width: 835px) {
   .svg1 {
     position: absolute;

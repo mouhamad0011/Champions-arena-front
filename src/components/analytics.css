@@ -1,0 +1,82 @@
+.analytics .pie{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    gap: 30px;
+}
+.analytics .title{
+    font-size: 25px;
+    font-weight: 500;
+}
+.analytics .pyramid{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    gap: 30px;
+}
+.analytics .first-two{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    gap: 150px;
+    align-items: center;
+    justify-content: center;
+}
+.analytics .second-two{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+    gap: 150px;
+    align-items: center;
+    justify-content: center;
+}
+.analytics .vert-bar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    gap: 30px;
+}
+
+
+.analytics .horiz-bar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    gap: 30px;
+}
+
+
+
+
+
+@media screen and (max-width: 576px) {
+    .analytics .pie{
+        scale: 0.50;
+    }
+    .analytics .horiz-bar{
+        scale: 0.60;
+    }
+    .analytics .vert-bar{
+        scale: 0.60;
+    }
+    .analytics .pyramid{
+        scale: 0.60;
+    }
+    .analytics .first-two{
+        flex-direction: column;
+        gap: 0px;
+    }
+    .analytics .second-two{
+        flex-direction: column;
+        gap: 0px;
+        margin-top: 20px;
+    }
+}

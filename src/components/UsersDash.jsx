@@ -1,7 +1,7 @@
 import { useMemo, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../images/champions-arena-logo.png";
-
+import Popup from "./Popup";
 import {
   MaterialReactTable,
   useMaterialReactTable,
@@ -32,6 +32,7 @@ import {
 
 import SendIcon from "@mui/icons-material/Send";
 const UsersDash = () => {
+  const [openDeleteConfirmModal, setOpenDeleteConfirmModal] = useState(null);
   const [loading, setLoading] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -94,10 +95,9 @@ const UsersDash = () => {
     table.setEditingRow(null); //exit editing mode
   };
 
-  const openDeleteConfirmModal = (row) => {
-    if (window.confirm("Are you sure you want to delete this user?")) {
-      dispatch(deleteUser(row.original._id));
-    }
+  const handleDelete = async (id) => {
+    dispatch(deleteUser(id));
+    setOpenDeleteConfirmModal(null);
   };
 
   const openSendEmail = (row) => {
@@ -129,7 +129,7 @@ const UsersDash = () => {
           </IconButton>
         </Tooltip>
         <Tooltip title="Delete">
-          <IconButton color="error" onClick={() => openDeleteConfirmModal(row)}>
+          <IconButton color="error" onClick={() => setOpenDeleteConfirmModal(row)}>
             <DeleteIcon />
           </IconButton>
         </Tooltip>
@@ -192,10 +192,26 @@ const UsersDash = () => {
         }}
         style={{backgroundColor:"#d21034", padding:"10px", textTransform:"none", fontSize:"20px"}}
       >
-        Create new user
+        Add new user
       </Button>
     ),
   });
+  if (openDeleteConfirmModal !== null) {
+    return(
+    <div>
+      <MaterialReactTable table={table} />
+      <Popup
+        title="Are you sure you want to delete this item?"
+        cancelLabel="Cancel"
+        confirmLabel="Delete"
+        onReject={() => {
+          setOpenDeleteConfirmModal(null);
+        }}
+        onAccept={() => handleDelete(openDeleteConfirmModal.original._id)}
+      />
+    </div>
+    );
+  }
   if (users.length === 0 || loading) {
     return (
       <>

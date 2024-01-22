@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { useNagivate, Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import "./home.css";
@@ -17,7 +17,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { getAllStoreItems } from "../redux/actions/store";
 import Example from "../loading/Example";
-
+import {getUserRole} from "../UserInfo/GetUserInfo";
 const style = {
   position: "absolute",
   top: "50%",
@@ -38,6 +38,7 @@ const style = {
 };
 
 function Store() {
+  const role = getUserRole();
   const store = useSelector((state) => state.store);
   const dispatch = useDispatch();
   //const [isLoading, setIsLoading] = useState(true);
@@ -89,10 +90,11 @@ function Store() {
     // }, 4000);
     dispatch(getAllStoreItems());
   }, []);
-
+  const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const handlelogout = () => {
     localStorage.removeItem("token");
+    navigate("/login")
   };
 
   return (
@@ -154,7 +156,7 @@ function Store() {
           </Link>
         </ul>
         <div className="reg-lan">
-          <button className="reg-button">
+        <button className="reg-button">
             {!token ? (
               <Link to="/connect" className="link">
                 Connect
@@ -165,7 +167,23 @@ function Store() {
               </Link>
             )}
           </button>
-          <img
+          {token && (
+            <Link to={role === "admin" ? "/admin" : "user"}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              viewBox="0 0 50 50"
+              fill="none"
+            >
+              <path
+                d="M0 0V14.5H14.5V0H0ZM17.625 0V14.5H32.125V0H17.625ZM35.25 0V14.5H50V0H35.25ZM0 17.625V32.125H14.5V17.625H0ZM17.625 17.625V32.125H32.125V17.625H17.625ZM35.25 17.625V32.125H50V17.625H35.25ZM0 35.25V50H14.5V35.25H0ZM17.625 35.25V50H32.125V35.25H17.625ZM35.25 35.25V50H50V35.25H35.25Z"
+                fill="white"
+              />
+            </svg>
+            </Link>
+          )}
+          {/* <img
             className="language"
             src={languagee}
             alt="language"
@@ -184,7 +202,7 @@ function Store() {
                 {language === "english" ? "French" : "Francais"}
               </div>
             </div>
-          )}
+          )} */}
         </div>
       </header>
       <header className="phone-header">
@@ -193,8 +211,8 @@ function Store() {
         </Link>
         <div className="phone-title">CHAMPIONS ARENA</div>
         <div className="phone-reg-lan">
-          <button className="phone-reg-button">
-          {!token ? (
+        <button className="phone-reg-button">
+            {!token ? (
               <Link to="/connect" className="link">
                 Connect
               </Link>
@@ -204,7 +222,23 @@ function Store() {
               </Link>
             )}
           </button>
-          <img
+          {token && (
+            <Link to={role === "admin" ? "/admin" : "user"}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="27"
+              height="27"
+              viewBox="0 0 50 50"
+              fill="none"
+            >
+              <path
+                d="M0 0V14.5H14.5V0H0ZM17.625 0V14.5H32.125V0H17.625ZM35.25 0V14.5H50V0H35.25ZM0 17.625V32.125H14.5V17.625H0ZM17.625 17.625V32.125H32.125V17.625H17.625ZM35.25 17.625V32.125H50V17.625H35.25ZM0 35.25V50H14.5V35.25H0ZM17.625 35.25V50H32.125V35.25H17.625ZM35.25 35.25V50H50V35.25H35.25Z"
+                fill="white"
+              />
+            </svg>
+            </Link>
+          )}
+          {/* <img
             className="phone-language"
             src={languagee}
             alt="language"
@@ -223,7 +257,7 @@ function Store() {
                 {language === "english" ? "French" : "Francais"}
               </div>
             </div>
-          )}
+          )} */}
         </div>
         <div className="trigger" onClick={handleMenu}>
           <svg className="bars" viewBox="0 0 100 100" onClick={handleToggle}>

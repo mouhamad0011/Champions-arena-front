@@ -6,6 +6,8 @@ const bookingReducer = (state = [], action) => {
       return action.payload;
     case "getBookingsByDateAndTerrain":
       return action.payload;
+    case "getBookingsByDateAndName":
+      return action.payload;
     case "getBookingsBydate":
       return action.payload;
     case "addBookingByAdmin":

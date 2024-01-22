@@ -1,5 +1,8 @@
 import { useMemo, useEffect, useState } from "react";
-import "./home.css"
+import axios from "axios";
+import "./home.css";
+import Popup from "./Popup";
+import { toast } from "react-hot-toast";
 import {
   MRT_EditActionButtons,
   MaterialReactTable,
@@ -12,15 +15,16 @@ import {
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
-  getAllBookings,
-  updateBooking,
-  deleteBooking,
   addBookingByAdmin,
+  addBookingByUser,
+  getBookingsByDateAndTerrain,
 } from "../redux/actions/booking";
+import { getAllTerrains } from "../redux/actions/terrain";
 import Example2 from "../loading/Example2";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
+  Modal,
   Box,
   Button,
   DialogActions,
@@ -29,34 +33,60 @@ import {
   IconButton,
   Tooltip,
   TextField,
+  Select,
+  MenuItem,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
 } from "@mui/material";
 
 const BookingsDash = () => {
   const bookings = useSelector((state) => state.bookings);
+  const terrains = useSelector((state) => state.terrains);
   const dispatch = useDispatch();
-  const [terrainId, setTerrainId] = useState("");
+  const [terrainId, setTerrainId] = useState("65a26f3e1c912c4b41ccc4a7");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
   const [duration, setDuration] = useState("");
-  const [bill, setBill] = useState("");
-  
+  const [hourPrice, setHourPrice] = useState("");
+  const [stads, setStads] = useState([]);
+  const [allBookings, setAllBookings] = useState([]);
+
+  const [openDeleteConfirmModal, setOpenDeleteConfirmModal] = useState(null);
+
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    dispatch(getAllBookings());
+    axios
+      .get(`${process.env.REACT_APP_BACKEND}/bookings/getAll`)
+      .then((response) => {
+        const bookings = response.data.bookings;
+        setAllBookings(bookings);
+      })
+      .catch((error) => {
+        console.error("Error while getting bookings:", error);
+      });
+    dispatch(getAllTerrains());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (terrains && stads.length === 0) {
+      setStads(
+        terrains.map((terrain) => ({
+          _id: terrain._id,
+          name: terrain.name,
+          hourPrice: terrain.hourPrice,
+        }))
+      );
+    }
+  }, [terrains, stads]);
 
-  function dataHasField(field) {
-    // Check if any booking in the array has the specified field
-    return bookings.some(booking => Object.prototype.hasOwnProperty.call(booking, field));
-  }
-  
   const columns = useMemo(
-    () => 
-    [
+    () => [
       {
         accessorKey: "_id",
         header: "Id",
@@ -72,49 +102,37 @@ const BookingsDash = () => {
       {
         accessorKey: "firstName",
         header: "First Name",
-      Cell: ({ row }) => (
-        row.original.userId ?
-         <td>
-            {row.original.userId.firstName}
-         </td>
-         :
-         <td>
-            {row.original.firstName}
-         </td>
-      ),
-      size: 100,
-      enableEditing: true
+        Cell: ({ row }) =>
+          row.original.userId ? (
+            <td>{row.original.userId.firstName}</td>
+          ) : (
+            <td>{row.original.firstName}</td>
+          ),
+        size: 100,
+        enableEditing: true,
       },
       {
         accessorKey: "lastName",
         header: "Last Name",
-      Cell: ({ row }) => (
-        row.original.userId ?
-         <td>
-            {row.original.userId.lastName}
-         </td>
-         :
-         <td>
-            {row.original.lastName}
-         </td>
-      ),
-      size: 100,
-      enableEditing: true
+        Cell: ({ row }) =>
+          row.original.userId ? (
+            <td>{row.original.userId.lastName}</td>
+          ) : (
+            <td>{row.original.lastName}</td>
+          ),
+        size: 100,
+        enableEditing: true,
       },
       {
         accessorKey: "email",
         header: "Email",
-      Cell: ({ row }) => (
-        row.original.userId ?
-         <td>
-            {row.original.userId.email}
-         </td>
-         :
-         <td>
-            {row.original.email}
-         </td>
-      ),
-      size: 100
+        Cell: ({ row }) =>
+          row.original.userId ? (
+            <td>{row.original.userId.email}</td>
+          ) : (
+            <td>{row.original.email}</td>
+          ),
+        size: 100,
       },
       {
         accessorKey: "date",
@@ -144,157 +162,333 @@ const BookingsDash = () => {
     []
   );
 
-  const handleCreateItem = async ({ values, table }) => {
-    // //console.log(values)
-    // dispatch(addItemToStore(item, price, info, file));
-    // table.setCreatingRow(null); //exit creating mode
-    // setLoading(true);
-    
-    // setTimeout(() => {
-    //   setLoading(false)
-    // }, 5000);
- 
-    // setItem("");
-    // setPrice("");
-    // setInfo("");
-    // setFile(null);
-    
+  const currentDate = new Date().toISOString().split("T")[0];
+
+  const oneHourSlots = [
+    "6h - 7h",
+    "7h - 8h",
+    "8h - 9h",
+    "9h - 10h",
+    "10h - 11h",
+    "11h - 12h",
+    "12h - 13h",
+    "13h - 14h",
+    "14h - 15h",
+    "15h - 16h",
+    "16h - 17h",
+    "17h - 18h",
+    "18h - 19h",
+    "19h - 20h",
+    "20h - 21h",
+    "21h - 22h",
+    "22h - 23h",
+    "23h - 24h",
+  ];
+
+  useEffect(() => {
+    const newDate = date.split("-");
+    const datee = newDate[2] + "-" + newDate[1] + "-" + newDate[0];
+    dispatch(getBookingsByDateAndTerrain(datee, terrainId));
+  }, [date, terrainId]);
+
+  const timesToRemove = bookings
+    ?.map((booking) => booking?.time)
+    ?.filter((time) => time !== undefined);
+  var timesSeparated = [];
+  if (timesToRemove.length > 0) {
+    timesToRemove.forEach((time) => {
+      const tab = time?.split(" - ");
+      var nb1;
+      var nb2;
+      if (tab[0].length === 2) {
+        nb1 = tab[0].substring(0, 1);
+      } else {
+        nb1 = tab[0].substring(0, 2);
+      }
+      if (tab[1].length === 2) {
+        nb2 = tab[1].substring(0, 1);
+      } else {
+        nb2 = tab[1].substring(0, 2);
+      }
+      if (nb2 - nb1 === 1) {
+        timesSeparated.push(time);
+      } else {
+        nb1 = parseInt(nb1, 10);
+        nb2 = parseInt(nb2, 10);
+        timesSeparated.push(`${nb1}h - ${nb1 + 1}h`);
+        timesSeparated.push(`${nb1 + 1}h - ${nb2}h`);
+      }
+    });
+    //console.log(timesToRemove);
+    //   console.log(timesToRemove[1].split(" - "))
+    //  console.log(timesToRemove[1].split(" - ")[1].substring(0, 2) - timesToRemove[1].split(" - ")[0].substring(0, 2))
+    //console.log(timesToRemove[0].split(" - ")[1].length)
+  }
+  const filteredSlots = oneHourSlots?.filter(
+    (slot) => !timesSeparated.includes(slot)
+  );
+
+  const getTwoHourIntervals = () => {
+    var intervals = [];
+    for (let i = 0; i < oneHourSlots.length - 1; i += 2) {
+      intervals.push(
+        `${oneHourSlots[i]?.split(" ")[0]} - ${
+          oneHourSlots[i + 1]?.split(" ")[2]
+        }`
+      );
+    }
+    return intervals;
   };
 
+  const twoHourIntervals = getTwoHourIntervals();
+  const bookedTimes = bookings?.map((item) => item?.time);
 
-  const handleSaveUser = async ({ row, values, table }) => {
-    // const newItem = item ==="" ? values.item : item;
-    // const newPrice = price ==="" ? values.price : price;
-    // const newInfo = info ==="" ? values.info : info;
-    //  dispatch(updateItemStore(row.original._id, newItem , newPrice, newInfo, file ));
-    //  table.setEditingRow(null); //exit editing mode
+  const doIntervalsOverlap = (interval1, interval2 = "") => {
+    const [start1, end1] = interval1.split(" - ");
+    const [start2, end2] = interval2.split(" - ");
+    return end1 > start2 && start1 < end2;
   };
 
-  const openDeleteConfirmModal = (row) => {
-    // if (window.confirm("Are you sure you want to delete this item?")) {
-    //   dispatch(deleteItemFromStore(row.original._id));
-    // }
+  const availableIntervals = twoHourIntervals?.filter((interval) => {
+    for (const bookedTime of bookedTimes) {
+      if (doIntervalsOverlap(interval, bookedTime)) {
+        return false;
+      }
+    }
+    return true;
+  });
+
+  const handleCreateUser = async ({ values, table }) => {
+    const bill = duration * hourPrice;
+    const datee = date?.split("-");
+    const newDate = datee[2] + "-" + datee[1] + "-" + datee[0];
+    dispatch(
+      addBookingByAdmin(
+        firstName,
+        lastName,
+        email,
+        terrainId,
+        newDate,
+        time,
+        duration,
+        bill
+      )
+    );
+    setLoading(true);
+    setTimeout(async () => {
+      await axios
+        .get(`${process.env.REACT_APP_BACKEND}/bookings/getAll`)
+        .then((response) => {
+          const bookings = response.data.bookings;
+          setAllBookings(bookings);
+        })
+        .catch((error) => {
+          console.error("Error while getting bookings:", error);
+        });
+      table.setCreatingRow(null);
+      setLoading(false);
+      toast.success("Booking added successfully");
+    }, 3000);
   };
+
+  const handleDelete = async (id) => {
+    await axios
+      .delete(`${process.env.REACT_APP_BACKEND}/bookings/delete/${id}`)
+      .then(() => {
+        setAllBookings((prevBookings) =>
+          prevBookings.filter((booking) => booking._id !== id)
+        );
+        setOpenDeleteConfirmModal(null);
+      })
+      .catch((error) => {
+        console.error("Error while deleting:", error);
+      });
+  };
+
+  //   const openDeleteConfirmModal = (row) => {
+  // <Popup
+  //               title="test"
+  //               cancelLabel="cancel"
+  //               confirmLabel="confirm"
+  //               onReject={() => {
+  //                 setOpenDeleteConfirmModal(null)
+  //                }}
+  //               onAccept={()=>handleDelete(row.original._id)}
+  //             />
+
+  //     // if (window.confirm("Are you sure you want to delete this booking?")) {
+  //     //   axios
+  //     //   .delete(`${process.env.REACT_APP_BACKEND}/bookings/delete/${row.original._id}`)
+  //     //   .then(() => {
+  //     //     setAllBookings((prevBookings) =>
+  //     //         prevBookings.filter((booking) => booking._id !== row.original._id)
+  //     //       );
+  //     //   })
+  //     //   .catch((error) => {
+  //     //     console.error("Error while deleting:", error);
+  //     //   });
+  //     // }
+  //   };
 
   const table = useMaterialReactTable({
     initialState: { columnVisibility: { _id: false } },
     columns,
-    data: bookings,
+    data: allBookings,
     createDisplayMode: "modal", //default ('row', and 'custom' are also available)
     editDisplayMode: "modal", //default ('row', 'cell', 'table', and 'custom' are also available)
     enableEditing: true,
-    onCreatingRowSave: handleCreateItem,
+    onCreatingRowSave: handleCreateUser,
     getRowId: (row) => row.id,
-    //enableStickyHeader:true,
-    onEditingRowSave: handleSaveUser,
-    renderCreateRowDialogContent: ({ table, row, internalEditComponents }) => (
-      <>
-        <DialogTitle variant="h3">Create New Item</DialogTitle>
-        <DialogContent
-          sx={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: "20px" }}
-        >
-         {/* <TextField
-            type="text"
-            label="item name"
-            onChange={(event) => {
-              setItem(event.target.value);
-            }}
-            required
-          />
-          <TextField
-            type="number"
-            label="item price"
-            onChange={(event) => {
-              setPrice(event.target.value);
-            }}
-          />
-          <TextField
-            type="text"
-            label="more info"
-            onChange={(event) => {
-              setInfo(event.target.value);
-            }}
-          />
-          
-          <TextField
-            type="file"
-            onChange={(event) => {
-              setFile(event.target.files[0]);
-            }} 
-          />*/}
-        </DialogContent>
-        <DialogActions>
-          <MRT_EditActionButtons variant="text" table={table} row={row} />
-        </DialogActions>
-      </>
-    ),
-    renderEditRowDialogContent: ({ table, row }) => (
-      <>
-        <DialogTitle variant="h3">Edit Item</DialogTitle>
-        <DialogContent
-          sx={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
-        >
-          {/* <TextField
-            type="text"
-            label={row.original.item}
-            onChange={(event) => {
-              setItem(event.target.value);
-            }}
-          />
-          <TextField
-            type="number"
-            label={row.original.price}
-            onChange={(event) => {
-              setPrice(event.target.value);
-            }}
-          />
-          <TextField
-            type="text"
-            label={row.original.info ? row.original.info : "info"}
-            onChange={(event) => {
-              setInfo(event.target.value);
-            }}
-          />
-          <img src={row.original.image} alt="image" style={{width:"100px", height:"100px"}}/>
-          <TextField
-            type="file"
-            onChange={(event) => {
-              setFile(event.target.files[0]);
-            }}
-          /> */}
-        </DialogContent>
-        <DialogActions>
-          <MRT_EditActionButtons variant="text" table={table} row={row} />
-        </DialogActions>
-      </>
-    ),
+
     renderTopToolbarCustomActions: ({ table }) => (
       <Button
         variant="contained"
         onClick={() => {
           table.setCreatingRow(true); //simplest way to open the create row modal with no default values
         }}
-        style={{backgroundColor:"#d21034", padding:"10px", textTransform:"none", fontSize:"20px"}}
+        style={{
+          backgroundColor: "#d21034",
+          padding: "10px",
+          textTransform: "none",
+          fontSize: "20px",
+        }}
       >
         Add new booking
       </Button>
     ),
     renderRowActions: ({ row, table }) => (
       <Box sx={{ display: "flex", gap: "1rem" }}>
-        <Tooltip title="Edit">
-          <IconButton onClick={() => table.setEditingRow(row)}>
-            <EditIcon />
-          </IconButton>
-        </Tooltip>
         <Tooltip title="Delete">
-          <IconButton color="error" onClick={() => openDeleteConfirmModal(row)}>
+          <IconButton
+            color="error"
+            onClick={() => setOpenDeleteConfirmModal(row)}
+          >
             <DeleteIcon />
           </IconButton>
         </Tooltip>
       </Box>
     ),
+    renderCreateRowDialogContent: ({ table, row }) => (
+      <>
+        <DialogTitle variant="h3">Add New Booking</DialogTitle>
+        <DialogContent
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "1rem",
+            marginTop: "20px",
+          }}
+        >
+          <TextField
+            type="text"
+            label="first name"
+            onChange={(event) => {
+              setFirstName(event.target.value);
+            }}
+          />
+          <TextField
+            type="text"
+            label="last name"
+            onChange={(event) => {
+              setLastName(event.target.value);
+            }}
+          />
+          <TextField
+            type="email"
+            label="email"
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+          />
+          <Select
+            defaultValue="65a26f3e1c912c4b41ccc4a7"
+            onChange={(event) => {
+              setTerrainId(event.target.value);
+            }}
+            required
+          >
+            {stads &&
+              stads.map((stad, index) => (
+                <MenuItem
+                  value={stad._id}
+                  key={index}
+                  onClick={() => setHourPrice(stad.hourPrice)}
+                >
+                  {stad.name}
+                </MenuItem>
+              ))}
+          </Select>
+          <TextField
+            type="date"
+            onChange={(event) => {
+              setDate(event.target.value);
+            }}
+            InputProps={{ inputProps: { min: currentDate } }}
+          />
+          <FormControl>
+            <FormLabel>Duration</FormLabel>
+            <RadioGroup
+              value={duration}
+              onChange={(e) => setDuration(e.target.value)}
+            >
+              <FormControlLabel
+                value="1"
+                control={<Radio />}
+                label="One hour"
+              />
+              <FormControlLabel
+                value="2"
+                control={<Radio />}
+                label="Two hours"
+              />
+            </RadioGroup>
+          </FormControl>
+          <Select
+            defaultValue={"6h - 7h" || "6h - 8h"}
+            onChange={(event) => {
+              setTime(event.target.value);
+            }}
+            required
+          >
+            <MenuItem disabled>Choose a time</MenuItem>
+            {duration && duration == 1 && filteredSlots
+              ? filteredSlots.map((slot, index) => (
+                  <MenuItem value={slot} key={index}>
+                    {slot}
+                  </MenuItem>
+                ))
+              : availableIntervals.map((slot, index) => (
+                  <MenuItem value={slot} key={index}>
+                    {slot}
+                  </MenuItem>
+                ))}
+          </Select>
+
+          <TextField type="text" value={`Total: ${duration * hourPrice}$`} />
+        </DialogContent>
+        <DialogActions>
+          <MRT_EditActionButtons variant="text" table={table} row={row} />
+        </DialogActions>
+      </>
+    ),
   });
-  if (bookings.length === 0 || loading) {
+  if (openDeleteConfirmModal !== null) {
+    return (
+      <div>
+        <MaterialReactTable table={table} />
+        <Popup
+          title="Are you sure you want to delete this booking?"
+          cancelLabel="Cancel"
+          confirmLabel="Delete"
+          onReject={() => {
+            setOpenDeleteConfirmModal(null);
+          }}
+          onAccept={() => handleDelete(openDeleteConfirmModal.original._id)}
+        />
+      </div>
+    );
+  }
+  if (allBookings.length === 0 || loading) {
     return (
       <div
         style={{
@@ -309,7 +503,11 @@ const BookingsDash = () => {
       </div>
     );
   }
-  return <div><MaterialReactTable table={table} /></div>;
+  return (
+    <div>
+      <MaterialReactTable table={table} />
+    </div>
+  );
 };
 
 export default BookingsDash;
