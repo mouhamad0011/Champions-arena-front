@@ -560,7 +560,7 @@ const UserDash = () => {
                 Connect
               </Link>
             ) : (
-              <Link to="" className="link" onClick={handlelogout}>
+              <Link to="/login" className="link" onClick={handlelogout}>
                 Log out
               </Link>
             )}
@@ -581,7 +581,7 @@ const UserDash = () => {
                 Connect
               </Link>
             ) : (
-              <Link to="" className="link" onClick={handlelogout}>
+              <Link to="/login" className="link" onClick={handlelogout}>
                 Log out
               </Link>
             )}
