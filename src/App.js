@@ -33,10 +33,10 @@ function App() {
         <Route path="/cafeteria" element={<Cafeteria />} />
         <Route path="/store" element={<Store />} />
         <Route path="/about" element={<About />} />
-        {/* <Route path="/admin" element={ role === "admin" ? <AdminDash /> : <HomePage/> } />
-        <Route path="/user" element={role === "user" ? <UserDash /> : <HomePage/>} /> */}
-        <Route path="/admin" element={<AdminDash />} />
-        <Route path="/user" element={<UserDash />} />
+        <Route path="/admin" element={ role === "admin" ? <AdminDash /> : <HomePage/> } />
+        <Route path="/user" element={role === "user" ? <UserDash /> : <HomePage/>} />
+        {/* <Route path="/admin" element={<AdminDash />} />
+        <Route path="/user" element={<UserDash />} /> */}
       </Routes>
     </BrowserRouter>
   );
