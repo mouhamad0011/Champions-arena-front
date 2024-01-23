@@ -63,10 +63,17 @@ export const addTerrain = (name, sport, available, hourPrice, image, dimensions)
   };
 };
 
-export const deleteTerrain = (Id) => {
+export const deleteTerrain = (Id, token) => {
   return (dispatch) => {
     axios
-      .delete(`${process.env.REACT_APP_BACKEND}/terrains/delete/${Id}`)
+      .delete(`${process.env.REACT_APP_BACKEND}/terrains/delete/${Id}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${token}`,
+        }
+      }
+      )
       .then(() => {
         dispatch({
           type: "deleteTerrain",

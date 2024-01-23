@@ -42,10 +42,16 @@ export const addItemToCafeteria = (item, image, price) => {
   };
 };
 
-export const deleteItemFromCafeteria = (Id) => {
+export const deleteItemFromCafeteria = (Id, token) => {
   return (dispatch) => {
     axios
-      .delete(`${process.env.REACT_APP_BACKEND}/cafeteria/delete/${Id}`)
+      .delete(`${process.env.REACT_APP_BACKEND}/cafeteria/delete/${Id}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${token}`,
+        }
+      })
       .then(() => {
         dispatch({
           type: "deleteItemFromCafeteria",
@@ -58,7 +64,7 @@ export const deleteItemFromCafeteria = (Id) => {
   };
 };
 
-export const updateItemCafeteria = (Id, item, price, image) => {
+export const updateItemCafeteria = (Id,token, item, price, image) => {
   return (dispatch) => {
     const formData = new FormData();
     formData.append("item", item);
@@ -68,6 +74,7 @@ export const updateItemCafeteria = (Id, item, price, image) => {
       .put(`${process.env.REACT_APP_BACKEND}/cafeteria/update/${Id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
+          'authorization': `Bearer ${token}`
         },
       })
       .then((response) => {

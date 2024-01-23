@@ -83,10 +83,16 @@ export const login = (email, password) => {
     };
    };
 
-   export const deleteUser = (Id) => {
+   export const deleteUser = (Id, token) => {
     return (dispatch) => {
       axios
-        .delete(`${process.env.REACT_APP_BACKEND}/users/delete/${Id}`)
+        .delete(`${process.env.REACT_APP_BACKEND}/users/delete/${Id}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'authorization': `Bearer ${token}`,
+          }
+        })
         .then(() => {
           dispatch({
             type: "deleteUser",
@@ -101,6 +107,7 @@ export const login = (email, password) => {
   
   export const updateUser = (
     Id,
+    token,
     firstName,
     lastName,
     email,
@@ -114,7 +121,13 @@ export const login = (email, password) => {
     };
     return (dispatch) => {
       axios
-        .put(`${process.env.REACT_APP_BACKEND}/users/update/${Id}`, newUser)
+        .put(`${process.env.REACT_APP_BACKEND}/users/update/${Id}`, newUser,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'authorization': `Bearer ${token}`,
+          }
+        })
         .then((response) => {
           const user = response.data.user;
           dispatch({

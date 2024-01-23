@@ -38,7 +38,7 @@ const UsersDash = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const token = localStorage.getItem("token");
   const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -86,6 +86,7 @@ const UsersDash = () => {
     dispatch(
       updateUser(
         values._id,
+        token,
         values.firstName,
         values.lastName,
         values.email,
@@ -96,7 +97,7 @@ const UsersDash = () => {
   };
 
   const handleDelete = async (id) => {
-    dispatch(deleteUser(id));
+    dispatch(deleteUser(id, token));
     setOpenDeleteConfirmModal(null);
   };
 

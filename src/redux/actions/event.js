@@ -49,10 +49,16 @@ export const addEvent = (terrainId, price, image, date, time, duration, title, d
   };
 };
 
-export const deleteEvent = (Id) => {
+export const deleteEvent = (Id, token) => {
   return (dispatch) => {
     axios
-      .delete(`${process.env.REACT_APP_BACKEND}/events/delete/${Id}`)
+      .delete(`${process.env.REACT_APP_BACKEND}/events/delete/${Id}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${token}`,
+        }
+      })
       .then(() => {
         dispatch({
           type: "deleteEvent",
@@ -65,7 +71,7 @@ export const deleteEvent = (Id) => {
   };
 };
 
-export const updateEvent = (Id, terrainId, price, image, date, time, duration, title, description) => {
+export const updateEvent = (Id, token, terrainId, price, image, date, time, duration, title, description) => {
   return (dispatch) => {
     const formData = new FormData();
     formData.append("terrainId", terrainId);
@@ -80,6 +86,7 @@ export const updateEvent = (Id, terrainId, price, image, date, time, duration, t
       .put(`${process.env.REACT_APP_BACKEND}/events/update/${Id}`, formData,{
         headers: {
           "Content-Type": "multipart/form-data",
+          'authorization': `Bearer ${token}`
         }
       })
       .then((response) => {

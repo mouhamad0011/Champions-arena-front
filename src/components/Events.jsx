@@ -59,7 +59,7 @@ function Events() {
   const token = localStorage.getItem("token");
   const handlelogout = () => {
     localStorage.removeItem("token");
-    navigate("/login")
+    navigate("/connect")
   };
 
   return (
@@ -78,7 +78,7 @@ function Events() {
           </li>
           {SisHovering && (
             <div
-              className="sports"
+              className={token ? "sports" : "sports2"}
               onMouseOver={handleSOnHover}
               onMouseOut={handleSOutHover}
             >

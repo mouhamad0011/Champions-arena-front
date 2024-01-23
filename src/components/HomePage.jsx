@@ -68,7 +68,7 @@ function HomePage() {
   const token = localStorage.getItem("token");
   const handlelogout = () => {
     localStorage.removeItem("token");
-    navigate("/login")
+    navigate("/connect")
   };
   
   return (
@@ -87,7 +87,7 @@ function HomePage() {
           </li>
           {SisHovering && (
             <div
-              className="sports"
+              className={token ? "sports" : "sports2"}
               onMouseOver={handleSOnHover}
               onMouseOut={handleSOutHover}
             >

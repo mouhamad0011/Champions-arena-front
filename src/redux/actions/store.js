@@ -43,10 +43,16 @@ export const addItemToStore = (item, price, info, image) => {
   };
 };
 
-export const deleteItemFromStore = (Id) => {
+export const deleteItemFromStore = (Id, token) => {
   return (dispatch) => {
     axios
-      .delete(`${process.env.REACT_APP_BACKEND}/store/delete/${Id}`)
+      .delete(`${process.env.REACT_APP_BACKEND}/store/delete/${Id}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${token}`,
+        }
+      })
       .then(() => {
         dispatch({
           type: "deleteItemFromStore",
@@ -59,7 +65,7 @@ export const deleteItemFromStore = (Id) => {
   };
 };
 
-export const updateItemStore = (Id, item, price, info, image) => {
+export const updateItemStore = (Id, token, item, price, info, image) => {
   return (dispatch) => {
     const formData = new FormData();
     formData.append("item", item);
@@ -70,6 +76,7 @@ export const updateItemStore = (Id, item, price, info, image) => {
       .put(`${process.env.REACT_APP_BACKEND}/store/update/${Id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
+          'authorization': `Bearer ${token}`,
         },
       })
       .then((response) => {

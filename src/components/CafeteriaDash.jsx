@@ -43,7 +43,7 @@ const CafeteriaDash = () => {
   useEffect(() => {
     dispatch(getAllCafeteriaItems());
   }, [dispatch]);
-
+  const token = localStorage.getItem("token")
   const columns = useMemo(
     () => [
       {
@@ -103,12 +103,12 @@ const CafeteriaDash = () => {
     const newItem = item ==="" ? values.item : item;
     const newPrice = price ==="" ? values.price : price;
 
-     dispatch(updateItemCafeteria(row.original._id, newItem , newPrice, file ));
+     dispatch(updateItemCafeteria(row.original._id, token, newItem , newPrice, file ));
      table.setEditingRow(null); //exit editing mode
   };
 
   const handleDelete = async (id) => {
-    dispatch(deleteItemFromCafeteria(id));
+    dispatch(deleteItemFromCafeteria(id, token));
     setOpenDeleteConfirmModal(null);
   };
 

@@ -83,7 +83,7 @@ function TennisPage() {
   const token = localStorage.getItem("token");
   const handlelogout = () => {
     localStorage.removeItem("token");
-    navigate("/login")
+    navigate("/connect")
   };
 
   const [date, setDate] = useState(
@@ -120,7 +120,7 @@ function TennisPage() {
           </li>
           {SisHovering && (
             <div
-              className="sports"
+              className={token ? "sports" : "sports2"}
               onMouseOver={handleSOnHover}
               onMouseOut={handleSOutHover}
             >

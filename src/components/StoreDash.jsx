@@ -44,7 +44,7 @@ const StoreDash = () => {
   useEffect(() => {
     dispatch(getAllStoreItems());
   }, [dispatch]);
-
+  const token = localStorage.getItem("token")
   const columns = useMemo(
     () => [
       {
@@ -111,12 +111,12 @@ const StoreDash = () => {
     const newItem = item ==="" ? values.item : item;
     const newPrice = price ==="" ? values.price : price;
     const newInfo = info ==="" ? values.info : info;
-     dispatch(updateItemStore(row.original._id, newItem , newPrice, newInfo, file ));
+     dispatch(updateItemStore(row.original._id, token, newItem , newPrice, newInfo, file ));
      table.setEditingRow(null); //exit editing mode
   };
 
   const handleDelete = async (id) => {
-    dispatch(deleteItemFromStore(id));
+    dispatch(deleteItemFromStore(id, token));
     setOpenDeleteConfirmModal(null);
   };
 

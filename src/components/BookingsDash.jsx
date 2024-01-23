@@ -274,6 +274,13 @@ const BookingsDash = () => {
         bill
       )
     );
+    await axios.post(`${process.env.REACT_APP_BACKEND}/mail/sendEmail`,{firstName, lastName, email, date:newDate, time})
+    .then((response)=>{
+      console.log(response);
+    })
+    .catch((error)=>{
+      console.log(error);
+    })
     setLoading(true);
     setTimeout(async () => {
       await axios

@@ -53,7 +53,7 @@ const AdminDash = () => {
                 Connect
               </Link>
             ) : (
-              <Link to="/login" className="link" onClick={handlelogout}>
+              <Link to="/connect" className="link" onClick={handlelogout}>
                 Log out
               </Link>
             )}

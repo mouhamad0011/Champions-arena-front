@@ -61,7 +61,7 @@ function Cafeteria() {
   const token = localStorage.getItem("token");
   const handlelogout = () => {
     localStorage.removeItem("token");
-    navigate("/login")
+    navigate("/connect")
   };
   
   return (
@@ -80,7 +80,7 @@ function Cafeteria() {
           </li>
           {SisHovering && (
             <div
-              className="sports"
+              className={token ? "sports" : "sports2"}
               onMouseOver={handleSOnHover}
               onMouseOut={handleSOutHover}
             >

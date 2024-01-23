@@ -144,7 +144,7 @@ const EventsDash = () => {
     ],
     []
   );
-
+ const token = localStorage.getItem("token");
   const handleCreateItem = async ({ values, table }) => {
 
     const datee= date.split("-");
@@ -182,12 +182,12 @@ const EventsDash = () => {
     const newDesc = description ==="" ? values.description : description;
     const newDuration = duration ==="" ? values.duration : duration;
 
-    dispatch(updateEvent(row.original._id, newId, newPrice, file, newDate, newTime, newDuration, newTitle, newDesc ));
+    dispatch(updateEvent(row.original._id, token, newId, newPrice, file, newDate, newTime, newDuration, newTitle, newDesc ));
     table.setEditingRow(null); //exit editing mode
   };
 
   const handleDelete = async (id) => {
-    dispatch(deleteEvent(id));
+    dispatch(deleteEvent(id, token));
     setOpenDeleteConfirmModal(null);
   };
 

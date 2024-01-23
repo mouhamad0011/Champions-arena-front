@@ -42,7 +42,7 @@ const StadiumsDash = () => {
   const [file, setFile] = useState(null);
   const [sport, setSport] = useState("");
   const [dimensions, setDimensions] = useState("");
-
+  const token = localStorage.getItem("token");
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     dispatch(getAllTerrains());
@@ -55,7 +55,6 @@ const StadiumsDash = () => {
         header: "Id",
         size: 0,
         enableEditing: false,
-        
       },
       {
         accessorKey: "name",
@@ -79,10 +78,8 @@ const StadiumsDash = () => {
         accessorKey: "available",
         header: "Availablity",
         Cell: ({ row }) => (
-            <td>
-                {row.original.available ? "available" : "under maintenance"}
-                </td>
-          ),
+          <td>{row.original.available ? "available" : "under maintenance"}</td>
+        ),
         size: 150,
         enableEditing: true,
       },
@@ -112,33 +109,41 @@ const StadiumsDash = () => {
     dispatch(addTerrain(name, sport, available, price, file, dimensions));
     table.setCreatingRow(null); //exit creating mode
     setLoading(true);
-    
+
     setTimeout(() => {
-      setLoading(false)
+      setLoading(false);
     }, 5000);
- 
+
     setName("");
     setPrice("");
     setAvailable("");
     setFile(null);
     setSport("");
-    setDimensions("")
+    setDimensions("");
   };
 
-
   const handleSaveUser = async ({ row, values, table }) => {
-    const newName = name ==="" ? values.name : name;
-    const newPrice = price ==="" ? values.price : price;
-    const newAvailable = available ==="" ? values.available : available;
-    const newSport = sport ==="" ? values.sport : sport;
-    const newDim = dimensions ==="" ? values.dimensions : dimensions;
-    dispatch(updateTerrain(row.original._id, newName, newSport, newAvailable, newPrice, file, newDim));
+    const newName = name === "" ? values.name : name;
+    const newPrice = price === "" ? values.price : price;
+    const newAvailable = available === "" ? values.available : available;
+    const newSport = sport === "" ? values.sport : sport;
+    const newDim = dimensions === "" ? values.dimensions : dimensions;
+    dispatch(
+      updateTerrain(
+        row.original._id,
+        newName,
+        newSport,
+        newAvailable,
+        newPrice,
+        file,
+        newDim
+      )
+    );
     table.setEditingRow(null); //exit editing mode
   };
 
-
   const handleDelete = async (id) => {
-    dispatch(deleteTerrain(id));
+    dispatch(deleteTerrain(id, token));
     setOpenDeleteConfirmModal(null);
   };
   const table = useMaterialReactTable({
@@ -156,9 +161,14 @@ const StadiumsDash = () => {
       <>
         <DialogTitle variant="h3">Add New Terrain</DialogTitle>
         <DialogContent
-          sx={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: "20px" }}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "1rem",
+            marginTop: "20px",
+          }}
         >
-         <TextField
+          <TextField
             type="text"
             label="terrain name"
             onChange={(event) => {
@@ -180,14 +190,14 @@ const StadiumsDash = () => {
               setAvailable(event.target.value);
             }}
           />
-           <TextField
+          <TextField
             type="text"
             label="sport"
             onChange={(event) => {
               setSport(event.target.value);
             }}
           />
-           <TextField
+          <TextField
             type="text"
             label="dimensions"
             onChange={(event) => {
@@ -212,7 +222,7 @@ const StadiumsDash = () => {
         <DialogContent
           sx={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
         >
-         <TextField
+          <TextField
             type="text"
             label={row.original.name}
             onChange={(event) => {
@@ -234,14 +244,14 @@ const StadiumsDash = () => {
               setAvailable(event.target.value);
             }}
           />
-           <TextField
+          <TextField
             type="text"
             label={row.original.sport}
             onChange={(event) => {
               setSport(event.target.value);
             }}
           />
-           <TextField
+          <TextField
             type="text"
             label={row.original.dimensions}
             onChange={(event) => {
@@ -266,7 +276,12 @@ const StadiumsDash = () => {
         onClick={() => {
           table.setCreatingRow(true); //simplest way to open the create row modal with no default values
         }}
-        style={{backgroundColor:"#d21034", padding:"10px", textTransform:"none", fontSize:"20px"}}
+        style={{
+          backgroundColor: "#d21034",
+          padding: "10px",
+          textTransform: "none",
+          fontSize: "20px",
+        }}
       >
         Add new stadium
       </Button>
@@ -279,7 +294,10 @@ const StadiumsDash = () => {
           </IconButton>
         </Tooltip>
         <Tooltip title="Delete">
-          <IconButton color="error" onClick={() => setOpenDeleteConfirmModal(row)}>
+          <IconButton
+            color="error"
+            onClick={() => setOpenDeleteConfirmModal(row)}
+          >
             <DeleteIcon />
           </IconButton>
         </Tooltip>
@@ -287,19 +305,19 @@ const StadiumsDash = () => {
     ),
   });
   if (openDeleteConfirmModal !== null) {
-    return(
-    <div>
-      <MaterialReactTable table={table} />
-      <Popup
-        title="Are you sure you want to delete this stadium?"
-        cancelLabel="Cancel"
-        confirmLabel="Delete"
-        onReject={() => {
-          setOpenDeleteConfirmModal(null);
-        }}
-        onAccept={() => handleDelete(openDeleteConfirmModal.original._id)}
-      />
-    </div>
+    return (
+      <div>
+        <MaterialReactTable table={table} />
+        <Popup
+          title="Are you sure you want to delete this stadium?"
+          cancelLabel="Cancel"
+          confirmLabel="Delete"
+          onReject={() => {
+            setOpenDeleteConfirmModal(null);
+          }}
+          onAccept={() => handleDelete(openDeleteConfirmModal.original._id)}
+        />
+      </div>
     );
   }
   if (terrains.length === 0 || loading) {
@@ -317,7 +335,11 @@ const StadiumsDash = () => {
       </div>
     );
   }
-  return <div><MaterialReactTable table={table} /></div>;
+  return (
+    <div>
+      <MaterialReactTable table={table} />
+    </div>
+  );
 };
 
 export default StadiumsDash;
