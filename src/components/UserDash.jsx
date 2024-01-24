@@ -1,7 +1,6 @@
 import { useMemo, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../images/champions-arena-logo.png";
-import UserNew from "./UserNew";
 import "./home.css";
 import Popup from "./Popup";
 import axios from "axios";
@@ -560,7 +559,7 @@ const UserDash = () => {
                 Connect
               </Link>
             ) : (
-              <Link to="/login" className="link" onClick={handlelogout}>
+              <Link to="/connect" className="link" onClick={handlelogout}>
                 Log out
               </Link>
             )}

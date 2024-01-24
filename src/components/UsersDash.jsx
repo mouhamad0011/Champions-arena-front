@@ -55,13 +55,13 @@ const UsersDash = () => {
       },
       {
         accessorKey: "firstName",
-        header: "First Name",
+        header: "First name",
         size: 150,
         enableEditing: true,
       },
       {
         accessorKey: "lastName",
-        header: "Last Name",
+        header: "Last name",
         size: 150,
         enableEditing: true,
       },
@@ -143,7 +143,7 @@ const UsersDash = () => {
     ),
     renderCreateRowDialogContent: ({ table, row, internalEditComponents }) => (
       <>
-        <DialogTitle variant="h3">Create New Item</DialogTitle>
+        <DialogTitle variant="h3">Add new user</DialogTitle>
         <DialogContent
           sx={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: "20px" }}
         >
@@ -193,7 +193,7 @@ const UsersDash = () => {
         }}
         style={{backgroundColor:"#d21034", padding:"10px", textTransform:"none", fontSize:"20px"}}
       >
-        Add new user
+        Add user
       </Button>
     ),
   });
@@ -202,7 +202,7 @@ const UsersDash = () => {
     <div>
       <MaterialReactTable table={table} />
       <Popup
-        title="Are you sure you want to delete this item?"
+        title="Are you sure you want to delete this user?"
         cancelLabel="Cancel"
         confirmLabel="Delete"
         onReject={() => {

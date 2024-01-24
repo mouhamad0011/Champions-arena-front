@@ -82,7 +82,7 @@ const EventsDash = () => {
       },
       {
         accessorKey: "terrainId.name",
-        header: "Stad Name",
+        header: "Stadium name",
         size: 150,
         enableEditing: true,
         editVariant: "select",
@@ -284,7 +284,7 @@ const EventsDash = () => {
     ),
     renderEditRowDialogContent: ({ table, row }) => (
       <>
-        <DialogTitle variant="h3">Edit Event</DialogTitle>
+        <DialogTitle variant="h3">Edit event</DialogTitle>
         <DialogContent
           sx={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
         >

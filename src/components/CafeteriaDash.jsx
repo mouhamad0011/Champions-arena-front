@@ -125,7 +125,7 @@ const CafeteriaDash = () => {
     onEditingRowSave: handleSaveUser,
     renderCreateRowDialogContent: ({ table, row, internalEditComponents }) => (
       <>
-        <DialogTitle variant="h3">Create New Item</DialogTitle>
+        <DialogTitle variant="h3">Add new item</DialogTitle>
         <DialogContent
           sx={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: "20px" }}
         >
@@ -158,7 +158,7 @@ const CafeteriaDash = () => {
     ),
     renderEditRowDialogContent: ({ table, row }) => (
       <>
-        <DialogTitle variant="h3">Edit Item</DialogTitle>
+        <DialogTitle variant="h3">Edit item</DialogTitle>
         <DialogContent
           sx={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
         >
@@ -197,7 +197,7 @@ const CafeteriaDash = () => {
         }}
         style={{backgroundColor:"#d21034", padding:"10px", textTransform:"none", fontSize:"20px"}}
       >
-        Add new item
+        Add item
       </Button>
     ),
     renderRowActions: ({ row, table }) => (

@@ -9,12 +9,6 @@ const PieChart = () => {
   const dispatch = useDispatch();
   const terrains = useSelector((state) => state.terrains);
   const bookings = useSelector((state) => state.bookings);
-  useEffect(() => {
-    dispatch(getAllTerrains());
-    dispatch(getAllBookings());
-  }, []);
-
-
 
   const terrainBilling = terrains.map((terrain) =>
     bookings
@@ -22,9 +16,9 @@ const PieChart = () => {
       .map((booking) => booking.bill)
       .reduce((prev, bill) => prev + bill, 0)
   );
-  console.log(terrainBilling);
+  console.log(bookings);
   const [chartData, setChartData] = useState({
-    series: terrainBilling ,
+    series: terrainBilling,
     options: {
       chart: {
         width: 600,
@@ -67,21 +61,25 @@ const PieChart = () => {
     },
   });
 
-  if(bookings.length === 0 || terrains.length === 0){
-    return <Example2/>
+  useEffect(() => {
+    dispatch(getAllTerrains());
+    dispatch(getAllBookings());
+  }, [dispatch]);
+
+  if (bookings.length === 0 || terrains.length === 0) {
+    return <Example2 />;
   }
-    return (
-      <div id="chart">
-        <ReactApexChart
-          options={chartData.options}
-          series={chartData.series}
-          type="pie"
-          width={550}
-        />
-      </div>
-    );
-  
- 
+
+  return (
+    <div id="chart">
+      <ReactApexChart
+        options={chartData?.options}
+        series={chartData?.series}
+        type="pie"
+        width={550}
+      />
+    </div>
+  );
 };
 
 export default PieChart;

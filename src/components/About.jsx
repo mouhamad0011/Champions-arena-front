@@ -116,7 +116,7 @@ function About() {
                 Connect
               </Link>
             ) : (
-              <Link to="" className="link" onClick={handlelogout}>
+              <Link to="/connect" className="link" onClick={handlelogout}>
                 Log out
               </Link>
             )}
@@ -171,7 +171,7 @@ function About() {
                 Connect
               </Link>
             ) : (
-              <Link to="" className="link" onClick={handlelogout}>
+              <Link to="/connect" className="link" onClick={handlelogout}>
                 Log out
               </Link>
             )}

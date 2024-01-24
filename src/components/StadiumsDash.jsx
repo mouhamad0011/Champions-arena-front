@@ -58,7 +58,7 @@ const StadiumsDash = () => {
       },
       {
         accessorKey: "name",
-        header: "Stad name",
+        header: "Stadium name",
         size: 150,
         enableEditing: true,
       },
@@ -70,7 +70,7 @@ const StadiumsDash = () => {
       },
       {
         accessorKey: "hourPrice",
-        header: "Hour Price",
+        header: "Hour price",
         size: 100,
         enableEditing: true,
       },
@@ -159,7 +159,7 @@ const StadiumsDash = () => {
     onEditingRowSave: handleSaveUser,
     renderCreateRowDialogContent: ({ table, row, internalEditComponents }) => (
       <>
-        <DialogTitle variant="h3">Add New Terrain</DialogTitle>
+        <DialogTitle variant="h3">Add new stadium</DialogTitle>
         <DialogContent
           sx={{
             display: "flex",
@@ -218,7 +218,7 @@ const StadiumsDash = () => {
     ),
     renderEditRowDialogContent: ({ table, row }) => (
       <>
-        <DialogTitle variant="h3">Edit Stadium</DialogTitle>
+        <DialogTitle variant="h3">Edit stadium</DialogTitle>
         <DialogContent
           sx={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
         >
@@ -283,7 +283,7 @@ const StadiumsDash = () => {
           fontSize: "20px",
         }}
       >
-        Add new stadium
+        Add stadium
       </Button>
     ),
     renderRowActions: ({ row, table }) => (

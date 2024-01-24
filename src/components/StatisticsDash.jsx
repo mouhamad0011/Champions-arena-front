@@ -10,7 +10,7 @@ const StatisticsDash = () => {
         <div className="analytics">
           <div className="first-two">
             <div className="pie">
-              <div className="title">Outcome for every stadium</div>
+              <div className="title">Outcome for every stadium ($)</div>
               <PieChart />
             </div>
             <div className="pyramid">
@@ -21,7 +21,7 @@ const StatisticsDash = () => {
           </div>
           <div className="second-two">
             <div className="vert-bar">
-              <div className="title">Outcome for every month</div>
+              <div className="title">Outcome for every month ($)</div>
               <BarChart />
             </div>
             <div className="horiz-bar">

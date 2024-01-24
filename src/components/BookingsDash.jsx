@@ -95,13 +95,13 @@ const BookingsDash = () => {
       },
       {
         accessorKey: "terrainId.name",
-        header: "Stad Name",
+        header: "Stadium name",
         size: 0,
         enableEditing: false,
       },
       {
         accessorKey: "firstName",
-        header: "First Name",
+        header: "First name",
         Cell: ({ row }) =>
           row.original.userId ? (
             <td>{row.original.userId.firstName}</td>
@@ -113,7 +113,7 @@ const BookingsDash = () => {
       },
       {
         accessorKey: "lastName",
-        header: "Last Name",
+        header: "Last name",
         Cell: ({ row }) =>
           row.original.userId ? (
             <td>{row.original.userId.lastName}</td>
@@ -312,30 +312,6 @@ const BookingsDash = () => {
       });
   };
 
-  //   const openDeleteConfirmModal = (row) => {
-  // <Popup
-  //               title="test"
-  //               cancelLabel="cancel"
-  //               confirmLabel="confirm"
-  //               onReject={() => {
-  //                 setOpenDeleteConfirmModal(null)
-  //                }}
-  //               onAccept={()=>handleDelete(row.original._id)}
-  //             />
-
-  //     // if (window.confirm("Are you sure you want to delete this booking?")) {
-  //     //   axios
-  //     //   .delete(`${process.env.REACT_APP_BACKEND}/bookings/delete/${row.original._id}`)
-  //     //   .then(() => {
-  //     //     setAllBookings((prevBookings) =>
-  //     //         prevBookings.filter((booking) => booking._id !== row.original._id)
-  //     //       );
-  //     //   })
-  //     //   .catch((error) => {
-  //     //     console.error("Error while deleting:", error);
-  //     //   });
-  //     // }
-  //   };
 
   const table = useMaterialReactTable({
     initialState: { columnVisibility: { _id: false } },
@@ -360,7 +336,7 @@ const BookingsDash = () => {
           fontSize: "20px",
         }}
       >
-        Add new booking
+        Add booking
       </Button>
     ),
     renderRowActions: ({ row, table }) => (
@@ -377,7 +353,7 @@ const BookingsDash = () => {
     ),
     renderCreateRowDialogContent: ({ table, row }) => (
       <>
-        <DialogTitle variant="h3">Add New Booking</DialogTitle>
+        <DialogTitle variant="h3">Add new booking</DialogTitle>
         <DialogContent
           sx={{
             display: "flex",

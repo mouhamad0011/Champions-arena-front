@@ -14,7 +14,8 @@ import { Toaster } from "react-hot-toast";
 import { getUserRole } from "./UserInfo/GetUserInfo";
 import AdminDash from "./components/AdminDash";
 import UserDash from "./components/UserDash";
-
+import StatisticsDash from "./components/StatisticsDash";
+import Oops from "./components/Oops";
 function App() {
   const role = getUserRole();
   console.log(role);
@@ -35,8 +36,9 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/admin" element={ role === "admin" ? <AdminDash /> : <HomePage/> } />
         <Route path="/user" element={role === "user" ? <UserDash /> : <HomePage/>} />
-        {/* <Route path="/admin" element={<AdminDash />} />
-        <Route path="/user" element={<UserDash />} /> */}
+        <Route path="/admin/analytics" element={ role === "admin" ? <StatisticsDash /> : <HomePage/> } />
+        <Route path="/*" element={<Oops />} />
+
       </Routes>
     </BrowserRouter>
   );

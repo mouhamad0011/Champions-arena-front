@@ -129,7 +129,7 @@ function Events() {
                 Connect
               </Link>
             ) : (
-              <Link to="" className="link" onClick={handlelogout}>
+              <Link to="/connect" className="link" onClick={handlelogout}>
                 Log out
               </Link>
             )}
@@ -185,7 +185,7 @@ function Events() {
                 Connect
               </Link>
             ) : (
-              <Link to="" className="link" onClick={handlelogout}>
+              <Link to="/connect" className="link" onClick={handlelogout}>
                 Log out
               </Link>
             )}
@@ -322,8 +322,8 @@ function Events() {
                 <>
                   <div className="event">
                     <div className="date">
-                      <div className="month">{event.date}</div>
-                      <div className="day">{event.price}$</div>
+                      <div className="day">{event.date}</div>
+                      <div className="month">{event.price}$</div>
                     </div>
                     <img src={event.image} alt="" />
                     <div className="description">
