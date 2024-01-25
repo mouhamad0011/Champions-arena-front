@@ -1,6 +1,7 @@
 import { useMemo, useEffect, useState } from "react";
 import "./home.css";
 import Popup from "./Popup";
+import { toast } from "react-hot-toast";
 import {
   MRT_EditActionButtons,
   MaterialReactTable,
@@ -188,6 +189,7 @@ const EventsDash = () => {
 
   const handleDelete = async (id) => {
     dispatch(deleteEvent(id, token));
+    toast.success("event deleted successfully");
     setOpenDeleteConfirmModal(null);
   };
 

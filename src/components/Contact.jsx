@@ -304,12 +304,9 @@ function ContactPage() {
           </div>
           <div className="2-buttons">
           <button type="submit" disabled={state.submitting} 
-          // onClick={()=>{
-          //   toast.success("Message sent successfully");
-          //   // setTimeout(() => {
-          //     resetForm();
-          //   // }, 3000);
-          // }}
+          onClick={()=>{
+            toast.success("Thank you for your message, we will get back to you shortly.");
+          }}
           >
             Submit
           </button>

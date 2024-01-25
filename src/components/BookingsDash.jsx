@@ -305,6 +305,7 @@ const BookingsDash = () => {
         setAllBookings((prevBookings) =>
           prevBookings.filter((booking) => booking._id !== id)
         );
+        toast.success("Booking deleted successfully!")
         setOpenDeleteConfirmModal(null);
       })
       .catch((error) => {

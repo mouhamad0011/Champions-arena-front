@@ -2,6 +2,7 @@ import { useMemo, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../images/champions-arena-logo.png";
 import Popup from "./Popup";
+import { toast } from "react-hot-toast";
 import {
   MaterialReactTable,
   useMaterialReactTable,
@@ -93,11 +94,13 @@ const UsersDash = () => {
         values.role
       )
     );
+    toast.success("User updated successfully!")
     table.setEditingRow(null); //exit editing mode
   };
 
   const handleDelete = async (id) => {
     dispatch(deleteUser(id, token));
+    toast.success("User deleted successfully!")
     setOpenDeleteConfirmModal(null);
   };
 
