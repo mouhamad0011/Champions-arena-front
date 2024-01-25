@@ -274,7 +274,7 @@ const BookingsDash = () => {
         bill
       )
     );
-    await axios.post(`${process.env.REACT_APP_BACKEND}/mail/sendEmail`,{firstName, lastName, email, date:newDate, time})
+    await axios.post(`${process.env.REACT_APP_BACKEND}/mail/sendEmail`,{firstName, lastName, email, date:newDate, time, bill})
     .then((response)=>{
       console.log(response);
     })

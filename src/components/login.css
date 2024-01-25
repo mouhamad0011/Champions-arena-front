@@ -123,12 +123,14 @@
   width: 200px;
   height: 40px;
   border-radius: 10px;
+  border: none;
 }
 .login-form button:hover{
     cursor: pointer;
     background-color: transparent;
-    color:#D21034;
-    border: 1px solid #D21034;
+    color:white;
+    border: 3px solid white;
+    font-family: 500;
 }
 
 
